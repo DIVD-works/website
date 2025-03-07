@@ -16,6 +16,10 @@ p {
     background-color: rgb(34, 34, 34);
 }
 
+.logo {
+    margin-top: 15px;
+}
+
 .main img {
     width: 600px;
 }
