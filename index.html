@@ -1,50 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIVD.works - Countdown to March 10, 2025</title>
-    <style>
-        body {
-            background-color: black;
-            color: #ffd736;
-            font-family: Arial, sans-serif;
-            font-size: large;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            text-align: center;
-        }
-        img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-        #countdown {
-            font-size: 2em;
-        }
-    </style>
-</head>
-<body>
-    <img src="img/divd-works-logo-v2.svg" alt="DIVD Works Logo"/>
-    <div id="countdown"></div>
-    <script>
-        function updateCountdown() {
-            const targetDate = new Date("March 10, 2025 12:00:00").getTime();
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIVD.works - Countdown to April 1, 2025</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/members.css" />
+    <link rel="stylesheet" href="./css/bullet.css">
+  </head>
+  <body>
+    <div class="main">
+      <img src="img/divd-works-logo-v2.svg" alt="DIVD Works Logo" />
+      <div class="main-wrapper">
+        <div>
+      <p>The goal of the DIVD.Works project is to create a platform that brings together young digital talent and employers. We help you not only further develop your skills but also find an internship or (part-time) job that suits you. Last week, we spoke with some of you about the struggles of studying and gaining work experience. <br> <br>Finding an internship – or later a graduation internship – turns out to be quite a challenge, causing more and more young people to give up. A shame, isn’t it? That’s why we want to build a platform that makes finding work and paid internships as easy as ordering a pizza via UberEats. No endless searches—just direct access to relevant opportunities and companies looking for your skills.</p>
+      <p>And we can’t do this alone! </p>
+      <p>Currently we are working on our website and the full project will be completed in:</p>
+    </div>
+      <div id="countdown"></div>
+    </div>
+    </div>
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = 
-                `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-    </script>
-</body>
+    <div class="members">
+        <h2 id="titel">DIVD.works Team</h2>
+        <div class="member-wrapper">
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 1" />
+                <p>Member 1</p>
+                <p>Front-end Developer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 2" />
+                <p>Member 1</p>
+                <p>Back-end Developer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 3" />
+                <p>Member 1</p>
+                <p>Designer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 4" />
+                <p>Member 1</p>
+                <p>Project Manager</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 5" />
+                <p>Member 1</p>
+                <p>Front-end Developer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 6" />
+                <p>Member 1</p>
+                <p>Back-end Developer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 7" />
+                <p>Member 1</p>
+                <p>Designer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 8" />
+                <p>Member 1</p>
+                <p>Project Manager</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 9" />
+                <p>Member 1</p>
+                <p>Designer</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 10" />
+                <p>Member 1</p>
+                <p>Project Manager</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+            <div class="member">
+                <img src="img/stock.jpg" alt="Member 11" />
+                <p>Member 1</p>
+                <p>Project Manager</p>
+                <li style="background-color: #ffd736; ; height: 1px; width: 233px;"></li>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/countdown.js"></script>
+  </body>
 </html>
