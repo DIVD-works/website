@@ -1,12 +1,54 @@
+
+@font-face {
+    font-family: 'Arial Rounded MT';
+    src: url('/fonts/ArialRoundedMTBold.eot');
+    src: url('/fonts/ArialRoundedMTBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/ArialRoundedMTBold.woff2') format('woff2'),
+        url('/fonts/ArialRoundedMTBold.woff') format('woff'),
+        url('/fonts/ArialRoundedMTBold.ttf') format('truetype'),
+        url('/fonts/ArialRoundedMTBold.svg#ArialRoundedMTBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+a {
+    color: #ffd736; 
+    text-decoration: underline; 
+}
+
+a:hover {
+    color: #ffd736;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ffd736;
+    text-decoration: underline; 
+}
+
+
+
 body {
     margin: 0;
     background-color: rgb(34, 34, 34);
+    font-family: 'Arial Rounded MT';
+    font-weight: bold;
+    font-style: normal;
+
 }
 
 p {
     color: #ffd736;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial Rounded MT';
 }
+
+h2 {
+    color: #ffd736;
+    font-family: 'Arial Rounded MT';   
+}
+ 
 
 .main {
     display: flex;
@@ -39,7 +81,7 @@ p {
 
 #countdown {
     color: #ffd736;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial Rounded MT';
     font-size: 4em;
 }
 
@@ -97,3 +139,12 @@ p {
         font-size: 2em;
     }
 }
+
+.grey-out {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .grey-out:hover {
+    filter: grayscale(0%);
+  }
