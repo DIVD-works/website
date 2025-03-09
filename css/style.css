@@ -60,7 +60,15 @@ h2 {
 
 .logo {
     margin-top: 15px;
+    filter: drop-shadow(0 0 10px #ffd736);
+    animation: poweredPulse 1.5s infinite alternate;
 }
+    
+      @keyframes poweredPulse {
+        0% { filter: drop-shadow(0 0 5px #665202); }
+        100% { filter: drop-shadow(0 0 20px #a58503); }
+      }
+
 
 .main img {
     width: 600px;
