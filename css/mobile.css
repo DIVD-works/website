@@ -82,7 +82,7 @@ h2 {
 }
 
 .main-wrapper p {
-    text-align: center;
+    text-align: left; /*to align it visible in the app */
     font-size: 1.5em;
     margin-top: 4vh;
 }
