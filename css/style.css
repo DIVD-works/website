@@ -32,7 +32,8 @@ a:visited {
 
 body {
     margin: 0;
-    background-color: rgb(0, 0, 0);
+    padding: 0;
+    background-color: #000000;
     font-family: 'Arial Rounded MT';
     font-weight: bold;
     font-style: normal;
@@ -49,19 +50,22 @@ h2 {
     font-family: 'Arial Rounded MT';   
 }
  
+li::marker {
+    color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+}
 
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     background-color: rgb(0, 0, 0);
 }
 
 .logo {
-    margin-top: 15px;
+    padding: 6px;
     filter: drop-shadow(0 0 10px #ffd736);
     animation: poweredPulse 1.5s infinite alternate;
+    width: 500px;
 }
     
       @keyframes poweredPulse {
@@ -69,23 +73,6 @@ h2 {
         100% { filter: drop-shadow(0 0 20px #a58503); }
       }
 
-
-.main img {
-    width: 600px;
-}
-
-.main-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 700px;
-}
-
-.main-wrapper p {
-    text-align: center;
-    font-size: 1.5em;
-    margin-top: 4vh;
-}
 
 #countdown {
     color: #ffd736;
@@ -95,7 +82,7 @@ h2 {
 
 /* Media queries for responsiveness */
 @media (max-width: 1300px) {
-    .main img {
+    .logo {
         width: 500px;
     }
 
@@ -113,7 +100,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .main img {
+    .logo {
         width: 400px;
     }
 
@@ -131,7 +118,7 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .main img {
+    .logo {
         width: 300px;
     }
 
@@ -158,19 +145,19 @@ h2 {
   }
 
   svg.filters { height:0; width: 0; position: absolute; z-index:-1; }
-.header-text {
+  .header-text {
     color: #ffd736;;
     font-size: 2em;
     text-align: center;
     line-height: 1.0625;
     font-weight: 600;
     letter-spacing: -0.009em;
+    margin-bottom: 40px;
 }
 .glow-filter{
     position: relative;
     display: inline-block;
     scale: 1;
-
     animation: onloadscale 1s ease-out forwards;
 }
 .glow-filter::before{
