@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated SVG Chart</title>
+    <style>
+        @font-face {
+            font-family: 'Arial Rounded MT';
+            src: url('/fonts/ArialRoundedMTBold.eot');
+            src: url('/fonts/ArialRoundedMTBold.eot?#iefix') format('embedded-opentype'),
+                url('/fonts/ArialRoundedMTBold.woff2') format('woff2'),
+                url('/fonts/ArialRoundedMTBold.woff') format('woff'),
+                url('/fonts/ArialRoundedMTBold.ttf') format('truetype'),
+                url('/fonts/ArialRoundedMTBold.svg#ArialRoundedMTBold') format('svg');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            margin: 0;
+            background-color: rgb(0, 0, 0);
+            font-family: 'Arial Rounded MT';
+            font-weight: bold;
+            font-style: normal;
+            text-align: center;
+            color: white;
+        }
+        svg {
+            width: 100%;
+            height: 350px;
+            background-color: black;
+        }
+        .bar {
+            fill: #ffd736;
+            transition: y 1s ease-in-out, height 1s ease-in-out;
+        }
+        .bar-label, .bar-value {
+            font-size: 12px;
+            text-anchor: middle;
+            fill: #ffd736;
+        }
+        .bar-period {
+            font-size: 12px;
+            text-anchor: middle;
+            fill: #ffd736;
+        }
+        line {
+            stroke: #ffd736;
+        }
+        #total {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #ffd736;
+        }
+    </style>
+</head>
+<body>
+    <h2>New Students per Period</h2>
+    <svg viewBox="0 0 500 350">
+        <g transform="translate(50, 250)">
+            <line x1="0" y1="0" x2="400" y2="0" />
+            <g id="bars"></g>
+        </g>
+    </svg>
+    <p id="total"></p>
+    
+    <script>
+        const data = [
+            { period: "2022 - P1", value: 8 },
+            { period: "2022 - P2", value: 32 },
+            { period: "2023 - P1", value: 200 },
+            { period: "2023 - P2", value: 1801 },
+            { period: "2024 - P1", value: 364 },
+            { period: "2024 - P2", value: 2182 },
+            { period: "2025 - P1", value: 2568 }
+        ];
+        
+        const total = data.reduce((sum, d) => sum + d.value, 0);
+        document.getElementById("total").textContent = `Total Students: ${total}`;
+        
+        const maxVal = Math.max(...data.map(d => d.value));
+        const scaleY = 200 / maxVal;
+        const barWidth = 50;
+        const gap = 20;
+        
+        const barsGroup = document.getElementById("bars");
+        
+        data.forEach((d, i) => {
+            let x = i * (barWidth + gap);
+            let height = d.value * scaleY;
+            
+            let bar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            bar.setAttribute("x", x);
+            bar.setAttribute("y", -200);
+            bar.setAttribute("width", barWidth);
+            bar.setAttribute("height", height);
+            bar.setAttribute("class", "bar");
+            barsGroup.appendChild(bar);
+            
+            let periodLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            periodLabel.setAttribute("x", x + barWidth / 2);
+            periodLabel.setAttribute("y", 30);
+            periodLabel.setAttribute("class", "bar-period");
+            periodLabel.textContent = d.period;
+            barsGroup.appendChild(periodLabel);
+            
+            let valueLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            valueLabel.setAttribute("x", x + barWidth / 2);
+            valueLabel.setAttribute("y", -height - 5);
+            valueLabel.setAttribute("class", "bar-value");
+            valueLabel.textContent = d.value;
+            barsGroup.appendChild(valueLabel);
+            
+            setTimeout(() => {
+                bar.setAttribute("y", -height);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
