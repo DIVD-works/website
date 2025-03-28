@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVD.works</title>
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/members.css" />
+        <link rel="stylesheet" href="/css/bullet.css">
+        <link rel="preload" href="/fonts/ArialRoundedMTBold.woff2" as="font" type="/fonts/woff2" crossorigin>
+
+        <style>
+            /* force all the yellow :-) */
+            body, h1, h2, h3, h4, h5, h6, p, a, span, li, div {
+                color: #FFD736 !important;
+            }
+        </style>
+
+</head>
+<body class="bg-black text-[#FFD736] dark:bg-black dark:text-[#FFD736] p-0 m-0">
+
+
+    <!-- Main Content -->
+    <main class="container mx-auto py-10 px-4 flex flex-col items-center">
+        <section class="text-center max-w-2xl">
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="text-center mb-12">
+            <h3 class="text-2xl font-semibold mb-[70px]">Our website and the full project will be completed in:</h3>
+            <div id="countdown" class="text-4xl font-bold border-4 border-[#ffd736] rounded-2xl p-4"></div>
+        </section>
+    </main>
+
+
+    <!-- Countdown Script -->
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Apr 4, 2025 00:00:00").getTime();
+
+        // Update the count down every 1 second
+        var countdownfunction = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownfunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
