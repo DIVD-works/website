@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Job Search - No Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Header -->
+  <header class="bg-black text-white flex justify-between items-center px-8 py-4">
+    <div class="text-2xl font-bold">DIVD.works</div>
+    <div>Job Seekers ▼</div>
+  </header>
+
+  <!-- Search Bar -->
+  <div class="flex flex-wrap justify-center items-center gap-2 bg-white p-8">
+    <input type="text" placeholder="developer" class="px-4 py-2 border rounded w-64" />
+    <input type="text" placeholder="The Hague, Netherlands" class="px-4 py-2 border rounded w-64" />
+    <select class="px-4 py-2 border rounded w-40">
+      <option>Distance</option>
+    </select>
+    <button class="bg-black text-yellow-300 px-4 py-2 rounded hover:bg-gray-900">Search</button>
+  </div>
+
+  <!-- Job Alert Sign-up -->
+  <div class="flex flex-col items-center bg-white p-6 space-y-4">
+    <p class="font-semibold text-lg">Get new jobs for this search by email</p>
+    <div class="flex gap-2">
+      <input type="email" placeholder="Email Address" class="px-4 py-2 border rounded w-72" />
+      <button class="bg-teal-900 text-white px-4 py-2 rounded hover:bg-teal-800">Create Alert</button>
+    </div>
+    <small class="text-gray-600 text-sm text-center">By clicking Create Alert, you agree to the Terms of Use and Privacy Policy.</small>
+  </div>
+
+  <!-- No Results Message -->
+  <div class="max-w-xl mx-auto mt-8 bg-yellow-200 text-gray-800 text-center px-6 py-4 rounded shadow">
+    No jobs were found.
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-sm mt-12 px-8 py-8 flex flex-wrap justify-around">
+    <div class="mb-4">
+      <strong class="block mb-1">For Job Seekers</strong>
+      <p>Search Jobs</p>
+      <p>Create Free Account</p>
+      <p>Support</p>
+    </div>
+    <div class="mb-4">
+      <strong class="block mb-1">Company</strong>
+      <p>About Us</p>
+      <p>Corporate Responsibility</p>
+    </div>
+    <div class="mb-4">
+      <strong class="block mb-1">Contact Us</strong>
+      <p>Email Us</p>
+      <p>Call 123456789</p>
+    </div>
+  </footer>
+
+  <!-- Footer Bottom -->
+  <div class="text-center text-xs text-gray-500 py-4">
+    &copy; DIVD.work, It simply works. ;-)
+  </div>
+
+</body>
+</html>

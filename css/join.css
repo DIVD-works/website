@@ -1,0 +1,146 @@
+@font-face {
+    font-family: 'Arial Rounded MT';
+    src: url('/fonts/ArialRoundedMTBold.eot');
+    src: url('/fonts/ArialRoundedMTBold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/ArialRoundedMTBold.woff2') format('woff2'),
+        url('/fonts/ArialRoundedMTBold.woff') format('woff'),
+        url('/fonts/ArialRoundedMTBold.ttf') format('truetype'),
+        url('/fonts/ArialRoundedMTBold.svg#ArialRoundedMTBold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    font-family: 'Arial Rounded MT';
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+p {
+    color: #ffd736;
+    font-family: 'Arial Rounded MT';
+}
+
+h2 {
+    color: #ffd736;
+    font-family: 'Arial Rounded MT';   
+}
+ 
+li::marker {
+    color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+}
+
+.logo {
+    padding: 6px;
+    filter: drop-shadow(0 0 10px #ffd736);
+    animation: poweredPulse 1.5s infinite alternate;
+    width: 500px;
+}
+    
+      @keyframes poweredPulse {
+        0% { filter: drop-shadow(0 0 5px #665202); }
+        100% { filter: drop-shadow(0 0 20px #a58503); }
+      }
+
+      /* Media queries for responsiveness */
+@media (max-width: 1300px) {
+    .logo {
+        width: 500px;
+    }
+
+    .main-wrapper {
+        width: 550px;
+    }
+
+    .main-wrapper p {
+        font-size: 1.3em;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 400px;
+    }
+
+    .main-wrapper {
+        width: 450px;
+    }
+
+    .main-wrapper p {
+        font-size: 1.2em;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 300px;
+    }
+
+    .main-wrapper {
+        width: 350px;
+    }
+
+    .main-wrapper p {
+        font-size: 1em;
+    }
+
+}
+
+svg.filters { height:0; width: 0; position: absolute; z-index:-1; }
+.header-text {
+  color: #ffd736;
+  font-size: 2em;
+  text-align: center;
+  line-height: 1.0625;
+  font-weight: 600;
+  letter-spacing: -0.009em;
+  margin-bottom: 40px;
+}
+.glow-filter{
+  position: relative;
+  display: inline-block;
+  scale: 1;
+  animation: onloadscale 1s ease-out forwards;
+}
+.glow-filter::before{
+  content: attr(data-text);
+  position: absolute;
+  pointer-events: none;
+  color:  #ffd736;;
+  background: linear-gradient(0deg, #efff14 0%, #ecd824 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: url(#glow-4);
+  -moz-filter: url(#glow-4);
+  -webkit-filter: url(#glow-4);
+
+  opacity: 0;
+  animation: onloadopacity 1s ease-out forwards;
+}
+@keyframes onloadscale {
+  24% { scale: 1; }
+  100% { scale: 1.02; }
+}
+@keyframes onloadopacity {
+  24% { opacity: 0; }
+  100% { opacity: 1; }
+}
