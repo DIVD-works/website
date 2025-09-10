@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projecten & Opdrachten</title>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,23 +14,46 @@
             primary: '#ffd736',
           },
           boxShadow: {
-            card: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            card: '0 4px 12px rgba(0, 0, 0, 0.05)',
           },
         },
       },
     };
   </script>
   <style>
-    /* Optional: smoother blur effect on supported browsers */
-    .glass {
+    /* Glassmorphism effect on table container */
+    .glass-table {
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+    }
+    /* Table row hover highlight */
+    tbody tr:hover {
+      background-color: rgba(255 215 54 / 0.2);
+      transition: background-color 0.3s ease;
+    }
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    /* Truncate description */
+    td.description {
+      max-width: 250px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
 <body class="bg-black text-white min-h-screen font-sans p-4">
 
-  <!-- Header -->
+  <!-- Page Header -->
   <header class="text-center mb-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-primary drop-shadow-lg">
       Projecten & opdrachten
@@ -40,8 +63,8 @@
     </p>
   </header>
 
-  <!-- Main -->
-  <main x-data="projectsList()" class="space-y-6">
+  <!-- Main Content -->
+  <main x-data="projectsList()" class="space-y-6" @keydown.escape.window="modalOpen = false">
 
     <!-- Filters -->
     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -69,6 +92,7 @@
           <button
             @click="selectedTag=''; query=''; selectedStatus=''"
             class="text-primary hover:underline focus:outline-none"
+            aria-label="Reset filters"
           >
             ✕ Reset
           </button>
@@ -76,42 +100,88 @@
       </template>
     </div>
 
-    <!-- Table Container (Glassmorphism) -->
-    <div class="overflow-x-auto rounded-xl border border-white/10 bg-white/5 glass shadow-xl">
+    <!-- Responsive Table Container with glass effect -->
+    <div class="overflow-x-auto glass-table max-w-full">
 
-      <table class="min-w-full text-sm divide-y divide-white/10">
-        <thead class="bg-white/10 text-white/80">
+      <table class="min-w-full text-sm divide-y divide-gray-700" role="table" aria-label="Lijst van projecten">
+        <thead class="bg-gray-700">
           <tr>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Titel</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Opdrachtgever</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Locatie</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Beschrijving</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Tags</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Status</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Periode</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Rollen</th>
-            <th class="px-4 py-3 text-left text-xs font-semibold uppercase">→</th>
+            <th
+              class="px-4 py-3 text-left text-xs font-semibold uppercase cursor-pointer select-none"
+              @click="sortBy('title')"
+              :class="sortField === 'title' ? 'text-primary' : ''"
+              scope="col"
+              tabindex="0"
+              @keydown.enter.prevent="sortBy('title')"
+              aria-sort="none"
+            >
+              Titel
+              <span x-show="sortField === 'title'" x-text="sortDirection === 'asc' ? '▲' : '▼'"></span>
+            </th>
+            <th
+              class="px-4 py-3 text-left text-xs font-semibold uppercase cursor-pointer select-none"
+              @click="sortBy('client')"
+              :class="sortField === 'client' ? 'text-primary' : ''"
+              scope="col"
+              tabindex="0"
+              @keydown.enter.prevent="sortBy('client')"
+              aria-sort="none"
+            >
+              Opdrachtgever
+              <span x-show="sortField === 'client'" x-text="sortDirection === 'asc' ? '▲' : '▼'"></span>
+            </th>
+            <th
+              class="px-4 py-3 text-left text-xs font-semibold uppercase cursor-pointer select-none"
+              @click="sortBy('location')"
+              :class="sortField === 'location' ? 'text-primary' : ''"
+              scope="col"
+              tabindex="0"
+              @keydown.enter.prevent="sortBy('location')"
+              aria-sort="none"
+            >
+              Locatie
+              <span x-show="sortField === 'location'" x-text="sortDirection === 'asc' ? '▲' : '▼'"></span>
+            </th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase" scope="col">Beschrijving</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase" scope="col">Tags</th>
+            <th
+              class="px-4 py-3 text-left text-xs font-semibold uppercase cursor-pointer select-none"
+              @click="sortBy('status')"
+              :class="sortField === 'status' ? 'text-primary' : ''"
+              scope="col"
+              tabindex="0"
+              @keydown.enter.prevent="sortBy('status')"
+              aria-sort="none"
+            >
+              Status
+              <span x-show="sortField === 'status'" x-text="sortDirection === 'asc' ? '▲' : '▼'"></span>
+            </th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase" scope="col">Periode</th>
+            <th class="px-4 py-3 text-left text-xs font-semibold uppercase" scope="col">Rollen</th>
+            <th class="px-4 py-3 text-center text-xs font-semibold uppercase" scope="col">Info</th>
           </tr>
         </thead>
-        <tbody>
-          <template x-for="project in filteredProjects()" :key="project.id">
+
+        <tbody class="divide-y divide-gray-700">
+          <template x-for="project in sortedProjects()" :key="project.id">
             <tr
-              @click="window.location.href = project.link"
-              class="cursor-pointer transition-all duration-300 transform hover:scale-[1.01] hover:bg-white/10 hover:backdrop-blur-md hover:shadow-lg hover:border hover:border-white/10 rounded-md"
               tabindex="0"
-              @keydown.enter="window.location.href = project.link"
-              @keydown.space.prevent="window.location.href = project.link"
+              @click="openModal(project)"
+              @keydown.enter.prevent="openModal(project)"
+              class="cursor-pointer transition-opacity duration-200 opacity-90 hover:opacity-100"
+              :aria-label="'Open details voor ' + project.title"
             >
               <td class="px-4 py-3 font-medium text-white" x-text="project.title"></td>
               <td class="px-4 py-3 text-white" x-text="project.client"></td>
               <td class="px-4 py-3 text-white" x-text="project.location"></td>
-              <td class="px-4 py-3 text-white" x-text="project.description"></td>
+              <td class="px-4 py-3 text-white description" :title="project.description" x-text="project.description"></td>
               <td class="px-4 py-3">
                 <template x-for="tag in project.tags" :key="tag">
                   <button
                     @click.stop.prevent="selectedTag = tag; query=''; selectedStatus=''"
                     class="inline-block bg-primary/20 text-primary text-xs font-semibold mr-1 px-2 py-0.5 rounded hover:bg-primary/40 transition"
                     type="button"
+                    :aria-label="'Filter op tag ' + tag"
                   >
                     <span x-text="tag"></span>
                   </button>
@@ -130,26 +200,119 @@
               </td>
               <td class="px-4 py-3 text-white" x-text="(project.start || '-') + ' – ' + (project.end || '-')"></td>
               <td class="px-4 py-3 text-white" x-text="project.roles.join(', ')"></td>
-              <td class="px-4 py-3 text-white text-center">→</td>
+              <td class="px-4 py-3 text-center">
+                <a
+                  :href="project.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-primary hover:underline"
+                  @click.stop
+                  @keydown.enter.stop
+                  :aria-label="'Meer informatie over ' + project.title"
+                >
+                  Meer info
+                </a>
+              </td>
             </tr>
           </template>
         </tbody>
       </table>
 
-      <div x-show="filteredProjects().length === 0" class="p-4 text-center text-gray-400">
+      <div
+        x-show="sortedProjects().length === 0"
+        class="p-4 text-center text-gray-400"
+      >
         Geen projecten gevonden.
       </div>
 
     </div>
+
+    <!-- Modal for project details -->
+    <div
+      x-show="modalOpen"
+      class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+      style="backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);"
+      @click.outside="modalOpen = false"
+      x-trap.noscroll="modalOpen"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 scale-95"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-95"
+      role="dialog"
+      aria-modal="true"
+      :aria-labelledby="'modal-title-' + (modalProject ? modalProject.id : '')"
+    >
+      <div class="bg-gray-900 rounded-lg max-w-lg w-full p-6 relative text-white shadow-lg">
+        <button
+          @click="modalOpen = false"
+          class="absolute top-3 right-3 text-gray-400 hover:text-white focus:outline-none"
+          aria-label="Sluit modal"
+        >
+          ✕
+        </button>
+        <template x-if="modalProject">
+          <div>
+            <h2
+              class="text-2xl font-bold mb-2"
+              :id="'modal-title-' + modalProject.id"
+              x-text="modalProject.title"
+            ></h2>
+            <p class="text-gray-400 mb-4" x-text="modalProject.client + ' — ' + modalProject.location"></p>
+            <p class="mb-4" x-text="modalProject.description"></p>
+
+            <p class="mb-2 font-semibold">Tags:</p>
+            <div class="mb-4 flex flex-wrap gap-2">
+              <template x-for="tag in modalProject.tags" :key="tag">
+                <span class="inline-block bg-primary/20 text-primary text-xs font-semibold px-2 py-1 rounded">
+                  <span x-text="tag"></span>
+                </span>
+              </template>
+            </div>
+
+            <p class="mb-2 font-semibold">Status:</p>
+            <span
+              x-text="modalProject.status"
+              :class="{
+                'bg-green-100 text-green-800': modalProject.status === 'Open',
+                'bg-yellow-100 text-yellow-800': modalProject.status === 'Bezig',
+                'bg-red-100 text-red-800': modalProject.status === 'Gesloten'
+              }"
+              class="text-xs font-semibold px-2 py-1 rounded"
+            ></span>
+
+            <p class="mt-4 mb-2 font-semibold">Periode:</p>
+            <p x-text="(modalProject.start || '-') + ' – ' + (modalProject.end || '-')"></p>
+
+            <p class="mt-4 mb-2 font-semibold">Rollen:</p>
+            <p x-text="modalProject.roles.join(', ')"></p>
+
+            <a
+              :href="modalProject.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block mt-6 text-primary hover:underline"
+            >
+              Meer informatie (nieuw tabblad)
+            </a>
+          </div>
+        </template>
+      </div>
+    </div>
   </main>
 
-  <!-- Alpine.js Component Logic -->
   <script>
     function projectsList() {
       return {
         query: '',
         selectedStatus: '',
         selectedTag: '',
+        sortField: 'title',
+        sortDirection: 'asc',
+        modalOpen: false,
+        modalProject: null,
+
         projects: [
           {
             id: 1,
@@ -162,7 +325,7 @@
             start: '2025‑09',
             end: '',
             roles: ['Creative Developer', 'Communicatie'],
-            link: 'http://hnnw.nl/daw/'
+            link: '/overzicht/daw'
           },
           {
             id: 2,
@@ -175,7 +338,7 @@
             start: '',
             end: '',
             roles: ['Security Researcher'],
-            link: 'https://csirt.global/projects/pgu/'
+            link: '/overzicht/global-universities'
           },
           {
             id: 3,
@@ -188,7 +351,7 @@
             start: '',
             end: '',
             roles: ['Developer', 'Documentatie'],
-            link: 'https://divd.works/'
+            link: '/overzicht/divd-works'
           },
           {
             id: 4,
@@ -201,63 +364,97 @@
             start: '',
             end: '',
             roles: ['Developer'],
-            link: 'https://github.com/SSC-ICT-Innovatie/ICY'
+            link: '/overzicht/project-icy'
           },
           {
             id: 5,
             title: 'VLAM.ai (Veilige Lokale AI Modellen)',
-            client: 'DIVD',
+            client: 'Veiligheidsautoriteit',
             location: 'Nederland',
-            description: 'Open‑source vervolg op LearningLion gericht op veilige, lokale AI‑modellen.',
-            tags: ['AI', 'Open Source', 'Privacy'],
-            status: 'Open',
-            start: '',
-            end: '',
-            roles: ['AI Researcher', 'Developer'],
-            link: 'https://vlam.ai/'
+            description: 'Innovatieproject rond lokale, privacy‑bewuste AI modellen.',
+            tags: ['AI', 'Privacy', 'Innovatie'],
+            status: 'Bezig',
+            start: '2025‑01',
+            end: '2025‑12',
+            roles: ['AI Specialist', 'Researcher'],
+            link: '/overzicht/vlam-ai'
           },
           {
             id: 6,
-            title: 'LearningLion',
-            client: 'SSC‑ICT',
+            title: 'Nederlandse Postcode API',
+            client: 'Open Data Nederland',
             location: 'Nederland',
-            description: 'Lokaal taalmodel met RAG‑technologie, privacy‑gericht.',
-            tags: ['AI', 'RAG', 'Privacy'],
+            description: 'Onderhoud en uitbreiding van een API voor postcode-informatie.',
+            tags: ['API', 'Open Data'],
             status: 'Gesloten',
-            start: '',
-            end: '2025‑08',
-            roles: ['NLP', 'Privacy Consultant'],
-            link: 'https://learninglion.nl/'
-          },
-          {
-            id: 7,
-            title: 'Digitaal Veilig Den Haag',
-            client: 'Gemeente Den Haag',
-            location: 'Den Haag',
-            description: 'Hackcursussen en stages voor jongeren uit ondervertegenwoordigde groepen.',
-            tags: ['Cybersecurity', 'Educatie', 'Diversiteit'],
-            status: 'Gesloten',
-            start: '',
-            end: '2025‑06',
-            roles: ['Trainer', 'Community Builder'],
-            link: 'https://www.denhaag.nl/nl/projecten-en-themas/digitaal-den-haag/'
+            start: '2024‑05',
+            end: '2025‑05',
+            roles: ['Backend Developer'],
+            link: '/overzicht/postcode-api'
           }
         ],
-        filteredProjects() {
-          return this.projects.filter(p => {
-            const q = this.query.toLowerCase();
-            const matchesQuery = p.title.toLowerCase().includes(q) ||
-                                 p.client.toLowerCase().includes(q) ||
-                                 p.location.toLowerCase().includes(q) ||
-                                 p.tags.some(tag => tag.toLowerCase().includes(q));
-            const matchesStatus = this.selectedStatus === '' || p.status === this.selectedStatus;
-            const matchesTag = this.selectedTag === '' || p.tags.includes(this.selectedTag);
+
+        // Sorting logic: toggle direction on same column
+        sortBy(field) {
+          if (this.sortField === field) {
+            this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+          } else {
+            this.sortField = field;
+            this.sortDirection = 'asc';
+          }
+        },
+
+        // Filter and sort projects for display
+        sortedProjects() {
+          let filtered = this.projects.filter((p) => {
+            const matchesQuery = this.query
+              ? (
+                  p.title.toLowerCase().includes(this.query.toLowerCase()) ||
+                  p.client.toLowerCase().includes(this.query.toLowerCase()) ||
+                  p.location.toLowerCase().includes(this.query.toLowerCase()) ||
+                  p.tags.some((tag) =>
+                    tag.toLowerCase().includes(this.query.toLowerCase())
+                  )
+                )
+              : true;
+
+            const matchesStatus = this.selectedStatus
+              ? p.status === this.selectedStatus
+              : true;
+
+            const matchesTag = this.selectedTag
+              ? p.tags.includes(this.selectedTag)
+              : true;
+
             return matchesQuery && matchesStatus && matchesTag;
           });
-        }
-      }
+
+          const sorted = filtered.sort((a, b) => {
+            let aVal = a[this.sortField] || '';
+            let bVal = b[this.sortField] || '';
+
+            // If sorting by roles array, join to string
+            if (Array.isArray(aVal)) aVal = aVal.join(', ');
+            if (Array.isArray(bVal)) bVal = bVal.join(', ');
+
+            aVal = aVal.toString().toLowerCase();
+            bVal = bVal.toString().toLowerCase();
+
+            if (aVal < bVal) return this.sortDirection === 'asc' ? -1 : 1;
+            if (aVal > bVal) return this.sortDirection === 'asc' ? 1 : -1;
+            return 0;
+          });
+
+          return sorted;
+        },
+
+        // Open modal with project details
+        openModal(project) {
+          this.modalProject = project;
+          this.modalOpen = true;
+        },
+      };
     }
   </script>
-
 </body>
 </html>
