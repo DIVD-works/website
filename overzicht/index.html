@@ -14,17 +14,23 @@
             primary: '#ffd736',
           },
           boxShadow: {
-            card: '0 4px 12px rgba(0, 0, 0, 0.05)',
+            card: '0 4px 12px rgba(0, 0, 0, 0.1)',
           },
         },
       },
     };
   </script>
+  <style>
+    /* Optional: smoother blur effect on supported browsers */
+    .glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
 </head>
 <body class="bg-black text-white min-h-screen font-sans p-4">
 
-
-  <!-- Page Header -->
+  <!-- Header -->
   <header class="text-center mb-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-primary drop-shadow-lg">
       Projecten & opdrachten
@@ -34,7 +40,7 @@
     </p>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <main x-data="projectsList()" class="space-y-6">
 
     <!-- Filters -->
@@ -70,11 +76,11 @@
       </template>
     </div>
 
-    <!-- Responsive Table Container -->
-    <div class="overflow-x-auto bg-gray-800 rounded-lg shadow-card">
+    <!-- Table Container (Glassmorphism) -->
+    <div class="overflow-x-auto rounded-xl border border-white/10 bg-white/5 glass shadow-xl">
 
-      <table class="min-w-full text-sm divide-y divide-gray-700">
-        <thead class="bg-gray-700">
+      <table class="min-w-full text-sm divide-y divide-white/10">
+        <thead class="bg-white/10 text-white/80">
           <tr>
             <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Titel</th>
             <th class="px-4 py-3 text-left text-xs font-semibold uppercase">Opdrachtgever</th>
@@ -87,12 +93,11 @@
             <th class="px-4 py-3 text-left text-xs font-semibold uppercase">→</th>
           </tr>
         </thead>
-
-        <tbody class="divide-y divide-gray-700">
+        <tbody>
           <template x-for="project in filteredProjects()" :key="project.id">
             <tr
               @click="window.location.href = project.link"
-              class="cursor-pointer transition-opacity duration-200 opacity-90 hover:opacity-100"
+              class="cursor-pointer transition-all duration-300 transform hover:scale-[1.01] hover:bg-white/10 hover:backdrop-blur-md hover:shadow-lg hover:border hover:border-white/10 rounded-md"
               tabindex="0"
               @keydown.enter="window.location.href = project.link"
               @keydown.space.prevent="window.location.href = project.link"
@@ -131,16 +136,14 @@
         </tbody>
       </table>
 
-      <div
-        x-show="filteredProjects().length === 0"
-        class="p-4 text-center text-gray-400"
-      >
+      <div x-show="filteredProjects().length === 0" class="p-4 text-center text-gray-400">
         Geen projecten gevonden.
       </div>
 
     </div>
   </main>
 
+  <!-- Alpine.js Component Logic -->
   <script>
     function projectsList() {
       return {
