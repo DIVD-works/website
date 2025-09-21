@@ -12,3 +12,5 @@ id,parentId,name,lastName,position,image,email,phone_number,hire_date,job_id,sal
 109,103,Luc,van Kessel,Customer Success,luc.jpg,,,,,,,,,,,,,,,,,,
 110,103,Akiko,Takashima,Executive Assistant,akiko.jpg,,,,,,,,,,,,,,,,,,
 111,103,Liam,Plokkaar,Sales,liam.jpg,,,,,,,,,,,,,,,,,,
+111,105,Tabitha,Vogelaar,Security Expert,tabitha.jpg,,,,,,,,,,,,,,,,,,
+
