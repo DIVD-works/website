@@ -2,7 +2,7 @@ id,parentId,name,lastName,position,image,email,phone_number,hire_date,job_id,sal
 100,,Victor,Gevers,Chief Executive  Officer,victor.jpg,,,,,,,,,,,,,,,,,,
 101,100,vacant,position,Chief Financial Officer,unknown.jpg,,,,,,,,,,,,,,,,,,
 102,100,vacant,position,Chief Technical Officer,unknown.jpg,,,,,,,,,,,,,,,,,,
-103,100,Marcel,van der Kuil,Chief Operating Officer,marcel.jpg,,,,,,,,,,,,,,,,,,
+103,100,vacant,position,Chief Operating Officer,unknown.jpg,,,,,,,,,,,,,,,,,,
 104,100,Michel,Verhagen,Chief Public Private Partnerships,michel.jpg,,,,,,,,,,,,,,,,,,
 105,100,Ahmed,Ezzammouri,Chief Security Officer,ahmed.jpg,,,,,,,,,,,,,,,,,,
 106,103,Nigel,van Maanen,Chief Creative Officer,nigel.jpg,,,,,,,,,,,,,,,,,,
