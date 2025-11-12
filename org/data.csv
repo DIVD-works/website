@@ -13,4 +13,4 @@ id,parentId,name,lastName,position,image,email,phone_number,hire_date,job_id,sal
 110,103,Akiko,Takashima,Executive Assistant,akiko.jpg,,,,,,,,,,,,,,,,,,
 111,103,Liam,Plokkaar,Sales,liam.jpg,,,,,,,,,,,,,,,,,,
 112,105,Tabitha,Vogelaar,Security Expert,tabitha.jpg,,,,,,,,,,,,,,,,,,
-113,103,Roger,van der Zalm,Customer Support,roger.jpg,,,,,,,,,,,,,,,,,,
+113,103,Roger,van der Zalm,Customer Support Manager,roger.png,,,,,,,,,,,,,,,,,,
