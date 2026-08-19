@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Find internships, thesis projects, and part-time IT roles with DIVD.Works." />
+  <title>Jobs & Internships – DIVD.Works</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="DIVD.Works home">
+        <span class="brand__bubble">DIVD</span>
+        <span class="brand__tag">WORKS</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a class="is-active" href="/jobs/">Jobs</a>
+        <a href="/students/">Students</a>
+        <a href="/businesses/">Businesses</a>
+        <a href="/programs/">Programs</a>
+      </nav>
+      <a class="button button--small nav-cta" href="/join/">Join .Works</a>
+    </div>
+  </header>
+
+  <main class="jobs-page">
+    <section class="jobs-hero" aria-labelledby="jobs-title">
+      <div class="narrow">
+        <p class="eyebrow">OPEN OPPORTUNITIES</p>
+        <h1 id="jobs-title">Find your way into IT</h1>
+        <p class="jobs-hero__copy">Search internships, thesis projects, and part-time roles built to turn your next learning step into real experience.</p>
+      </div>
+    </section>
+
+    <section class="jobs-board" aria-labelledby="board-title">
+      <div class="container">
+        <form class="jobs-toolbar" role="search" aria-label="Search and filter vacancies" onsubmit="return false">
+          <label class="sr-only" for="job-search">Search vacancies</label>
+          <input class="jobs-control jobs-search" id="job-search" type="search" placeholder="Search roles, skills, or locations" autocomplete="off" />
+          <label class="sr-only" for="job-domain">Filter by domain</label>
+          <select class="jobs-control" id="job-domain">
+            <option value="">All domains</option>
+            <option value="Offensive Security">Offensive Security</option>
+            <option value="AI">AI</option>
+            <option value="Threat Intel">Threat Intel</option>
+          </select>
+          <label class="sr-only" for="job-type">Filter by type</label>
+          <select class="jobs-control" id="job-type">
+            <option value="">All types</option>
+            <option value="Internship">Internship</option>
+            <option value="Thesis">Thesis</option>
+            <option value="Part-time">Part-time</option>
+          </select>
+          <label class="sr-only" for="job-language">Filter by language</label>
+          <select class="jobs-control" id="job-language">
+            <option value="">All languages</option>
+            <option value="Dutch">Dutch</option>
+            <option value="English">English</option>
+          </select>
+          <div class="skills-filter" id="job-skill-filter">
+            <button class="jobs-control skills-filter__toggle" id="job-skill-toggle" type="button" aria-expanded="false" aria-controls="job-skill-menu">
+              All skills
+            </button>
+            <div class="skills-filter__menu" id="job-skill-menu" hidden>
+              <label class="sr-only" for="job-skill-search">Search skills</label>
+              <input class="jobs-control" id="job-skill-search" type="search" placeholder="Search skills..." autocomplete="off" />
+              <div class="skills-filter__options" id="job-skill-options" role="group" aria-label="Skills"></div>
+            </div>
+          </div>
+        </form>
+
+        <div class="jobs-results-heading">
+          <h2 id="board-title">Current opportunities</h2>
+          <p class="jobs-count" id="jobs-count" aria-live="polite">Loading vacancies...</p>
+        </div>
+        <div class="jobs-grid" id="jobs-grid" aria-live="polite"></div>
+        <div class="jobs-empty" id="jobs-empty" role="status" hidden>
+          <h3>No vacancies match those filters</h3>
+          <p>Try a broader search or clear one of the filters.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <div class="footer__main">
+      <div>
+        <a class="footer-brand" href="/">DIVD.Works</a>
+        <p>From first internship to first job.</p>
+      </div>
+      <div class="footer__links">
+        <div>
+          <h3>Platform</h3>
+          <a href="/students/">For Students</a>
+          <a href="/businesses/">For Businesses</a>
+        </div>
+        <div>
+          <h3>Programs</h3>
+          <a href="/programs/">Starter</a>
+          <a href="/programs/">Professional</a>
+          <a href="/programs/">Elite</a>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <a href="/company-information/">Company information</a>
+          <a href="/sustainability/">Sustainability</a>
+          <a href="/safety/">Safety</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 DIVD.Works</span>
+      <nav aria-label="Legal">
+        <a href="/privacy/policy">Privacy</a>
+        <a href="/accessibility">Accessibility</a>
+        <a href="/terms">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/jobs.js"></script>
+</body>
+</html>
