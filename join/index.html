@@ -3,14 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DIVD.works - Countdown to April 4, 2025</title>
+    <meta name="description" content="Join DIVD.Works and help build the bridge between talent and the IT world." />
+    <title>Join DIVD.Works</title>
+    <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/join.css" />
-    <link rel="preload" href="/fonts/ArialRoundedMTBold.woff2" as="font" type="/fonts/woff2" crossorigin>
-    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
 
-    <header class=" inset-x-0 top-0 z-50">
+    <header class="site-header" id="top">
+      <div class="nav-shell">
+        <a class="brand" href="/" aria-label="DIVD.Works home">
+          <span class="brand__bubble">DIVD</span>
+          <span class="brand__tag">WORKS</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="/students/">Students</a>
+          <a href="/businesses/">Businesses</a>
+          <a href="/programs/">Programs</a>
+        </nav>
+        <a class="button button--small nav-cta" href="#volunteerForm">Join .Works</a>
+      </div>
+    </header>
+
+    <header class="legacy-header inset-x-0 top-0 z-50">
       <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="/" class="-m-1.5 p-1.5">
@@ -160,7 +178,21 @@
             <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-250454217214347']", "https://form.jotform.com/")</script>
         </div> -->
 
-        <form id="volunteerForm" action="https://submit.jotform.com/submit/250454217214347/" method="POST" class="bg-black p-6 rounded-lg w-full max-w-2xl mx-auto flex flex-col gap-6">
+        <main class="join-page">
+          <section class="join-hero" aria-labelledby="join-title">
+            <p class="eyebrow">JOIN DIVD.WORKS</p>
+            <h1 id="join-title">Build the bridge<br />with us.</h1>
+            <p>Join a community connecting motivated talent with meaningful work in the professional IT world.</p>
+          </section>
+
+          <section class="join-form-section" aria-labelledby="form-title">
+            <div class="join-section-heading">
+              <p class="eyebrow">GET INVOLVED</p>
+              <h2 id="form-title">Tell us about yourself</h2>
+              <p>Complete the form and we will be in touch about the next step.</p>
+            </div>
+
+        <form id="volunteerForm" action="https://submit.jotform.com/submit/250454217214347/" method="POST" class="join-form">
           <!-- Name Section -->
           <div class="flex flex-col md:flex-row gap-4">
             <div class="flex-1">
@@ -444,6 +476,9 @@
             <div id="thankYouMessage" class="hidden text-center text-[#ffd736] font-bold text-xl mt-6">
               Thank you for filling in the form!
             </div>
+
+          </section>
+        </main>
             
             <style>
               #signatureCanvas {
@@ -471,7 +506,7 @@
             <script>
               const canvas = document.getElementById('signatureCanvas');
               const ctx = canvas.getContext('2d');
-              const signatureDataInput = document.getElementById('signatureData');
+              const signatureDataInput = document.getElementById('input_18');
               const clearButton = document.getElementById('clearSignature');
               const signatureError = document.getElementById('signatureError');
             
@@ -523,7 +558,7 @@
 
 
           <!-- Footer -->
-    <footer class="bg-black">
+    <footer class="legacy-footer bg-black">
       <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
         <div class="mt-24 border-t border-white/10 pt-12 xl:grid xl:grid-cols-3 xl:gap-8">
           <img class="h-9" src="/img/divd-works-logo-v2.svg" alt="DIVD.works">
@@ -637,6 +672,30 @@
       </div>
     </footer>
 
+    <footer class="footer container join-footer">
+      <div class="footer__main">
+        <div>
+          <a class="footer-brand" href="/">DIVD.Works</a>
+          <p>From first internship to first job.</p>
+        </div>
+        <div class="footer__links">
+          <div>
+            <h3>Platform</h3>
+            <a href="/students/">For Students</a>
+            <a href="/businesses/">For Businesses</a>
+          </div>
+          <div>
+            <h3>Programs</h3>
+            <a href="/programs/#starter-title">Starter</a>
+            <a href="/programs/#professional-title">Professional</a>
+            <a href="/programs/#elite-title">Elite</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">&copy; 2026 DIVD.Works</div>
+    </footer>
+
+      <script src="/js/script.js"></script>
       <script src="/js/menu.js"></script>
   </body>
 </html>

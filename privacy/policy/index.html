@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="DIVD.Works privacy policy." />
+        <title>Privacy policy | DIVD.Works</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <header class="site-header" id="top">
+            <div class="nav-shell">
+                <a class="brand" href="/" aria-label="DIVD.Works home">
+                    <span class="brand__bubble">DIVD</span>
+                    <span class="brand__tag">WORKS</span>
+                </a>
+
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+                    <a href="/students/">Students</a>
+                    <a href="/businesses/">Businesses</a>
+                    <a href="/programs/">Programs</a>
+                </nav>
+
+                <a class="button button--small nav-cta" href="/">Back to .Works</a>
+            </div>
+        </header>
+
+        <main class="privacy-page">
+            <section class="privacy-hero" aria-labelledby="privacy-title">
+                <p class="eyebrow">DIVD.WORKS</p>
+                <h1 id="privacy-title">Privacy policy</h1>
+                <p>How we handle your data and protect your privacy.</p>
+            </section>
+
+            <section class="privacy-document" aria-label="Privacy policy document">
+                <div class="privacy-document__frame">
+                    <iframe
+                        title="DIVD.Works privacy policy"
+                        src="https://docs.google.com/document/d/e/2PACX-1vSvQ6NjQ5JAxvc6djVRV5IoutTs8QQMF_57keYWol6_5WyApUKzx-xgwBBduzMcUS4HURh2r4Rj8wa_/pub?embedded=true">
+                    </iframe>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer container privacy-footer">
+            <div class="footer__main">
+                <div>
+                    <a class="footer-brand" href="/">DIVD.Works</a>
+                    <p>From first internship to first job.</p>
+                </div>
+                <div class="footer__links">
+                    <div>
+                        <h3>Platform</h3>
+                        <a href="/students/">For Students</a>
+                        <a href="/businesses/">For Businesses</a>
+                    </div>
+                    <div>
+                        <h3>Programs</h3>
+                        <a href="/programs/#starter-title">Starter</a>
+                        <a href="/programs/#professional-title">Professional</a>
+                        <a href="/programs/#elite-title">Elite</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">&copy; 2026 DIVD.Works</div>
+        </footer>
+
+        <script>
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('#primary-nav');
+
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => {
+                    const open = nav.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', String(open));
+                });
+
+                nav.addEventListener('click', (event) => {
+                    if (event.target instanceof HTMLAnchorElement) {
+                        nav.classList.remove('is-open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
