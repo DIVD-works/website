@@ -1,14 +1,25 @@
+@import url("students/styles.css");
+@import url("businesses/styles.css");
+@import url("programs/styles.css");
+
 :root {
   --bg: #080808;
   --bg-mid: #0f0f0f;
+  --bg-alt: var(--bg-mid);
+  --bg-2: var(--bg-mid);
   --card: #151515;
+  --panel: var(--card);
+  --panel-soft: #171717;
   --card-featured: #1b1800;
   --line: #282828;
+  --line-strong: #303030;
   --text: #f7f7f5;
   --muted: #b3b3b3;
   --muted-2: #8e8e8e;
   --yellow: #ffd326;
   --yellow-deep: #d9b600;
+  --yellow-dark: #2a250d;
+  --yellow-dark-2: #211d0c;
   --max: 1200px;
   --radius: 22px;
 }
