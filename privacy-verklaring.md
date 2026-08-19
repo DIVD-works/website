@@ -1,4 +1,4 @@
-# Prvacy verklaring
+# Privacy verklaring
 
 DIVD.works, gevestigd aan Maanweg 174 The Hague Netherlands, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.
 
