@@ -7,6 +7,7 @@
     <title>About | DIVD.Works</title>
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/about.css" />
+    <script src="https://d3js.org/d3-dsv.v3.min.js"></script>
   </head>
   <body>
     <header class="site-header" id="top">
@@ -41,10 +42,14 @@
         <div class="org-heading">
           <p class="eyebrow">OUR ORGANIZATION</p>
           <h2 id="org-title">Who makes it happen</h2>
-          <p>Our organization chart will live here.</p>
+          <p>Meet the people connecting young digital talent with the professional IT world.</p>
         </div>
         <div id="org-chart" class="org-chart" aria-label="DIVD.Works organization chart">
-          <p class="org-chart__placeholder">Organization chart coming soon.</p>
+          <div class="org-chart__toolbar" aria-label="Organization chart controls">
+            <button class="org-chart__control" type="button" data-org-action="expand">Expand all</button>
+            <button class="org-chart__control" type="button" data-org-action="collapse">Collapse all</button>
+          </div>
+          <div class="org-tree" data-org-tree></div>
         </div>
       </section>
     </main>
@@ -86,5 +91,6 @@
     </footer>
 
     <script src="/js/script.js"></script>
+    <script src="/js/org-chart.js"></script>
   </body>
 </html>
