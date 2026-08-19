@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="DIVD.Works accessibility statement." />
+        <title>Accessibility | DIVD.Works</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+        <style>
+            .accessibility-document {
+                width: min(calc(100% - 48px), 780px);
+                margin: 0 auto;
+                padding: 0 0 110px;
+            }
+            .accessibility-document__frame {
+                padding: 40px 44px;
+                background: var(--card);
+                border: 1px solid #303030;
+                border-radius: 16px;
+            }
+            .accessibility-document h2 {
+                margin: 36px 0 14px;
+                font-size: 24px;
+                letter-spacing: -.03em;
+            }
+            .accessibility-document h2:first-child { margin-top: 0; }
+            .accessibility-document p,
+            .accessibility-document li {
+                color: var(--muted);
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            .accessibility-document p { margin: 0 0 16px; }
+            .accessibility-document ul {
+                margin: 0;
+                padding-left: 22px;
+            }
+            .accessibility-document a {
+                color: var(--yellow);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+            .accessibility-document a:hover,
+            .accessibility-document a:focus-visible { color: var(--text); }
+            @media (max-width: 720px) {
+                .accessibility-document {
+                    width: min(calc(100% - 32px), 780px);
+                    padding-bottom: 78px;
+                }
+                .accessibility-document__frame { padding: 28px 24px; }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="site-header" id="top">
+            <div class="nav-shell">
+                <a class="brand" href="/" aria-label="DIVD.Works home">
+                    <span class="brand__bubble">DIVD</span>
+                    <span class="brand__tag">WORKS</span>
+                </a>
+
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+                    <a href="/students/">Students</a>
+                    <a href="/businesses/">Businesses</a>
+                    <a href="/programs/">Programs</a>
+                </nav>
+
+                <a class="button button--small nav-cta" href="/">Back to .Works</a>
+            </div>
+        </header>
+
+        <main class="privacy-page">
+            <section class="privacy-hero" aria-labelledby="accessibility-title">
+                <p class="eyebrow">DIVD.WORKS</p>
+                <h1 id="accessibility-title">Accessibility</h1>
+                <p>We want DIVD.Works to be usable by as many people as possible.</p>
+            </section>
+
+            <section class="accessibility-document" aria-label="Accessibility statement">
+                <div class="accessibility-document__frame">
+                    <h2>Our commitment</h2>
+                    <p>We are working to make this website accessible and easy to use, including for people who use assistive technology or alternative ways to navigate the web.</p>
+
+                    <h2>What we are working toward</h2>
+                    <p>Our goal is to align the website with the Web Content Accessibility Guidelines (WCAG) 2.2 at Level AA. We review accessibility as we improve the site, but some content or interactions may still need attention.</p>
+                    <ul>
+                        <li>Keyboard-friendly navigation and visible focus states.</li>
+                        <li>Clear headings, meaningful link text, and semantic page structure.</li>
+                        <li>Readable text, sufficient color contrast, and responsive layouts.</li>
+                        <li>Alternative text for meaningful images and labels for interactive controls.</li>
+                        <li>Respect for reduced-motion preferences where animations are used.</li>
+                    </ul>
+
+                    <h2>Feedback and support</h2>
+                    <p>If you have trouble using any part of the website, please let us know what you were trying to do and which page was involved. Email <a href="mailto:accessibility@divd.works">accessibility@divd.works</a> and we will use your feedback to improve the experience.</p>
+
+                    <h2>Statement details</h2>
+                    <p>This statement was last reviewed on 19 August 2026.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer container privacy-footer">
+            <div class="footer__main">
+                <div>
+                    <a class="footer-brand" href="/">DIVD.Works</a>
+                    <p>From first internship to first job.</p>
+                </div>
+                <div class="footer__links">
+                    <div>
+                        <h3>Platform</h3>
+                        <a href="/students/">For Students</a>
+                        <a href="/businesses/">For Businesses</a>
+                    </div>
+                    <div>
+                        <h3>Programs</h3>
+                        <a href="/programs/#starter-title">Starter</a>
+                        <a href="/programs/#professional-title">Professional</a>
+                        <a href="/programs/#elite-title">Elite</a>
+                    </div>
+                    <div>
+                        <h3>Company</h3>
+                        <a href="/company-information/">Company information</a>
+                        <a href="/sustainability/">Sustainability</a>
+                        <a href="/safety/">Safety</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>&copy; 2026 DIVD.Works</span>
+                <nav aria-label="Legal">
+                    <a href="/privacy/policy">Privacy</a>
+                    <a href="/accessibility">Accessibility</a>
+                    <a href="/terms">Terms</a>
+                </nav>
+            </div>
+        </footer>
+
+        <script>
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('#primary-nav');
+
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => {
+                    const open = nav.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', String(open));
+                });
+
+                nav.addEventListener('click', (event) => {
+                    if (event.target instanceof HTMLAnchorElement) {
+                        nav.classList.remove('is-open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>

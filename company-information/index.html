@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Company information for DIVD.Works." />
+        <title>Company information | DIVD.Works</title>
+        <link rel="stylesheet" href="/css/styles.css" />
+        <style>
+            .company-document { width: min(calc(100% - 48px), 780px); margin: 0 auto; padding-bottom: 110px; }
+            .company-document__frame { padding: 40px 44px; background: var(--card); border: 1px solid #303030; border-radius: 16px; }
+            .company-document h2 { margin: 36px 0 14px; font-size: 24px; letter-spacing: -.03em; }
+            .company-document h2:first-child { margin-top: 0; }
+            .company-document p { margin: 0 0 16px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+            @media (max-width: 720px) { .company-document { width: min(calc(100% - 32px), 780px); padding-bottom: 78px; } .company-document__frame { padding: 28px 24px; } }
+        </style>
+    </head>
+    <body>
+        <header class="site-header" id="top"><div class="nav-shell">
+            <a class="brand" href="/" aria-label="DIVD.Works home"><span class="brand__bubble">DIVD</span><span class="brand__tag">WORKS</span></a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+            <nav class="nav" id="primary-nav" aria-label="Primary navigation"><a href="/students/">Students</a><a href="/businesses/">Businesses</a><a href="/programs/">Programs</a></nav>
+            <a class="button button--small nav-cta" href="/">Back to .Works</a>
+        </div></header>
+        <main class="privacy-page">
+            <section class="privacy-hero" aria-labelledby="company-information-title"><p class="eyebrow">DIVD.WORKS</p><h1 id="company-information-title">Company information</h1><p>Who we are and how to reach us.</p></section>
+            <section class="company-document" aria-label="Company information"><div class="company-document__frame">
+                <h2>About DIVD.Works</h2>
+                <p>DIVD.Works connects students, schools, and businesses through internships, practical IT projects, mentoring, and career development.</p>
+                <h2>Our organization</h2>
+                <p>DIVD.Works operates from The Hague, the Netherlands. We work with education and industry partners to create practical pathways from learning to employment.</p>
+                <h2>Contact</h2>
+                <p>For general questions, contact <a href="mailto:hello@divd.works">hello@divd.works</a>.</p>
+            </div></section>
+        </main>
+        <footer class="footer container privacy-footer"><div class="footer__main"><div><a class="footer-brand" href="/">DIVD.Works</a><p>From first internship to first job.</p></div><div class="footer__links"><div><h3>Platform</h3><a href="/students/">For Students</a><a href="/businesses/">For Businesses</a></div><div><h3>Programs</h3><a href="/programs/#starter-title">Starter</a><a href="/programs/#professional-title">Professional</a><a href="/programs/#elite-title">Elite</a></div><div><h3>Company</h3><a href="/company-information/">Company information</a><a href="/sustainability/">Sustainability</a><a href="/safety/">Safety</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 DIVD.Works</span><nav aria-label="Legal"><a href="/privacy/policy">Privacy</a><a href="/accessibility">Accessibility</a><a href="/terms">Terms</a></nav></div></footer>
+        <script>const toggle = document.querySelector('.nav-toggle'); const nav = document.querySelector('#primary-nav'); if (toggle && nav) { toggle.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); toggle.setAttribute('aria-expanded', String(open)); }); nav.addEventListener('click', (event) => { if (event.target instanceof HTMLAnchorElement) { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); } }); }</script>
+    </body>
+</html>

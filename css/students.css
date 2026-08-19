@@ -353,7 +353,7 @@ button { font: inherit; }
 .footer-links {
   min-width: 320px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  grid-template-columns: repeat(3, minmax(110px, 1fr));
   gap: 55px;
 }
 
@@ -375,11 +375,22 @@ button { font: inherit; }
 }
 
 .footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
   border-top: 1px solid #222;
   padding: 23px 0 34px;
   color: #666;
   font-size: 13px;
 }
+.footer-bottom nav {
+  display: flex;
+  gap: 20px;
+}
+.footer-bottom a:hover,
+.footer-bottom a:focus-visible { color: #fff; }
 
 @media (max-width: 900px) {
   .steps {

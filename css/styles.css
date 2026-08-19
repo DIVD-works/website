@@ -458,7 +458,7 @@ h2 {
 .footer__links {
   min-width: 320px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  grid-template-columns: repeat(3, minmax(110px, 1fr));
   gap: 55px;
 }
 .footer__links h3 {
@@ -473,11 +473,22 @@ h2 {
 }
 .footer__links a:hover { color: var(--text); }
 .footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
   border-top: 1px solid #202020;
   padding: 24px 0 34px;
   color: #666;
   font-size: 13px;
 }
+.footer__bottom nav {
+  display: flex;
+  gap: 20px;
+}
+.footer__bottom a:hover,
+.footer__bottom a:focus-visible { color: var(--text); }
 
 @media (max-width: 960px) {
   .nav-shell { grid-template-columns: auto 1fr auto; }
