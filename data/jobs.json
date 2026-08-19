@@ -1,0 +1,38 @@
+[
+  {
+    "id": "divd-001",
+    "title": "Junior Penetration Testing Intern",
+    "partner": "DIVD Academy",
+    "type": "Internship",
+    "domain": "Offensive Security",
+    "location": "Utrecht / Hybrid",
+    "language": "Dutch / English",
+    "stipend": true,
+    "skills": ["Web security", "Burp Suite", "Linux"],
+    "apply_url": "https://example.com/apply/divd-001"
+  },
+  {
+    "id": "divd-002",
+    "title": "Threat Intelligence Graduation Project",
+    "partner": "Northstar Security",
+    "type": "Thesis",
+    "domain": "Threat Intel",
+    "location": "Remote (EU)",
+    "language": "English",
+    "stipend": false,
+    "skills": ["OSINT", "Python", "Research"],
+    "apply_url": "https://example.com/apply/divd-002"
+  },
+  {
+    "id": "divd-003",
+    "title": "AI Security Research Assistant",
+    "partner": "Signal Labs",
+    "type": "Part-time",
+    "domain": "AI",
+    "location": "Amsterdam / Hybrid",
+    "language": "English",
+    "stipend": true,
+    "skills": ["Python", "Machine learning", "Prompt security"],
+    "apply_url": "https://example.com/apply/divd-003"
+  }
+]
