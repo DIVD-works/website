@@ -565,28 +565,9 @@ h2 {
 .footer__bottom a:hover,
 .footer__bottom a:focus-visible { color: var(--text); }
 
-/* Footer language selector + spacing tweaks */
-.footer__links .footer-lang {
-  margin-top: 12px;
-}
-.footer__links .footer-lang select {
-  -webkit-appearance: none;
-  appearance: none;
-  background: rgba(255,255,255,0.02);
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-  min-width: 160px;
-  max-width: 220px;
-}
-
 @media (max-width: 720px) {
   .footer__main { align-items: center; }
   .footer__links { grid-template-columns: 1fr; gap: 20px; }
-  .footer__links .footer-lang select { max-width: 100%; width: 100%; }
   .footer__bottom { padding-top: 18px; }
 }
 
