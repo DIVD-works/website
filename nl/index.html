@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DIVD.Works – van eerste stage tot eerste baan." />
+  <title>DIVD.Works – Door stagiairs, voor stagiairs</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="alternate" href="/" hreflang="en" />
+  <link rel="alternate" href="/nl/" hreflang="nl" />
+  <link rel="alternate" href="/es/" hreflang="es" />
+  <link rel="alternate" href="/fr/" hreflang="fr" />
+  <link rel="alternate" href="/de/" hreflang="de" />
+  <link rel="alternate" href="/" hreflang="x-default" />
+  <style media="not all">
+/* Minimal inline styles preserved from root for consistent layout */
+:root { --bg: #080808; --bg-mid: #0f0f0f; --card: #151515; --card-featured: #1b1800; --line: #282828; --text: #f7f7f5; --muted: #b3b3b3; --muted-2: #8e8e8e; --yellow: #ffd326; --yellow-deep: #d9b600; --max: 1200px; --radius: 22px; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+.container { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+.nav { display: flex; align-items: center; gap: 38px; color: #aaa; font-size: 14px; font-weight: 600; }
+/* Keep the rest of styles omitted for brevity — main stylesheet handles layout */
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand brand--small" href="/nl/" aria-label="DIVD.Works home">
+        <span class="brand__bubble">DIVD</span>
+        <span class="brand__tag">WORKS</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="/nl/jobs/">Vacatures</a>
+        <a href="/nl/students/">Studenten</a>
+        <a href="/nl/businesses/">Bedrijven</a>
+        <a href="/nl/programs/">Programma's</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button button--small nav-cta" href="#join">Beschikbaar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <canvas class="hero__mesh" id="hero-mesh" aria-hidden="true"></canvas>
+      <div class="hero__fade" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 id="hero-title">Door stagiairs, voor stagiairs.<br />Wij zijn</h1>
+
+        <div class="hero-logo" aria-label="DIVD Works">
+          <div class="hero-logo__tag">WORKS</div>
+          <div class="hero-logo__body">DIVD</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision section-mid" id="vision" aria-labelledby="vision-title">
+      <div class="narrow content-center">
+        <p class="eyebrow">ONZE VISIE</p>
+        <h2 id="vision-title">Talent is niet het probleem.<br />De weg ernaartoe wel.</h2>
+        <div class="vision__copy">
+          <p><strong>.Works</strong> is de architect die gemotiveerd jong talent verbindt met de professionele IT-wereld.</p>
+          <p>We overbruggen de kloof tussen onderwijs en de IT-branche. Studenten solliciteren voor stages en bedrijven dienen IT-projecten in voor ontwikkeling. Gekwalificeerde stagiairs solliciteren rechtstreeks op deze projecten, van website-opdrachten tot uitgebreide pentests.</p>
+          <p>Dit ondersteunt zowel de groei van studenten als de doelen van professionals: bedrijven krijgen talent getraind voor de taak, terwijl studenten waardevolle praktijkervaring opdoen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="roles section-dark" id="students" aria-labelledby="roles-title">
+      <div class="container">
+        <div class="content-center roles__heading">
+          <p class="eyebrow">EÉN PLATFORM, DRIE ROLLEN</p>
+          <h2 id="roles-title">Gemaakt voor studenten,<br />bedrijven en scholen</h2>
+        </div>
+
+        <div class="card-grid">
+          <article class="info-card">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11a3 3 0 0 1 3 3v12a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 17.5v-12Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H14v15a3 3 0 0 1 3-3h.5a2.5 2.5 0 0 1 2.5 2.5v-12Z"/></svg>
+            </div>
+            <h3>Studenten</h3>
+            <p>Solliciteer voor stages en echte IT-projecten – van websites tot pentests. Krijg coaching, mentoring en loopbaanontwikkeling naast je eerste baan.</p>
+          </article>
+
+          <article class="info-card" id="businesses">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M9 12v2h6v-2"/></svg>
+            </div>
+            <h3>Bedrijven</h3>
+            <p>Dien IT-projecten in en krijg talent dat specifiek voor jouw taak is opgeleid – voorgefilterd, gemotiveerd en ondersteund door ons programma.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M12 3 5 5.5V11c0 4.8 2.9 8.2 7 10 4.1-1.8 7-5.2 7-10V5.5L12 3Z"/><path d="m9 12 2 2 4-5"/></svg>
+            </div>
+            <h3>Scholen</h3>
+            <p>Houd studenten ingeschreven en op schema met gegarandeerde stage toegang, waardoor uitval door het stagetekort in de Nederlandse IT afneemt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs section-mid" id="programs" aria-labelledby="programs-title">
+      <div class="container">
+        <div class="content-center programs__heading">
+          <p class="eyebrow">PREMIUMLIDMAATSCHAP</p>
+          <h2 id="programs-title">Het Talent Programma: van<br />eerste stage naar eerste baan</h2>
+          <p class="lead">Elke deelnemer volgt een volledig ontwikkelprogramma – coaching, praktijkervaring, mentoring en loopbaanontwikkeling.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Starter</h3>
+            <p class="price-card__desc">Je eerste stage, eerste stappen in cybersecurity of IT.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Student</span>
+                <strong>Gratis</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">School / Werkgever</span>
+                <strong>€49/mnd</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="price-card price-card--featured">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Professional</h3>
+            <p class="price-card__desc">Actieve stages en afstudeerprojecten, met een persoonlijke mentor.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Student</span>
+                <strong>€10/mnd</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">School / Werkgever</span>
+                <strong>€89/mnd</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="price-card">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Elite</h3>
+            <p class="price-card__desc">Top talent en jonge professionals met groeipotentieel.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Student</span>
+                <strong>€99/mnd</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">School / Werkgever</span>
+                <strong>€399/mnd</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="program-link-wrap"></div>
+      </div>
+    </section>
+
+    <section class="closing section-dark" id="join" aria-labelledby="closing-title">
+      <div class="container closing__top">
+        <div class="content-center">
+          <h2 id="closing-title">Klaar om de brug te bouwen?</h2>
+          <p class="lead">Of je nu student, bedrijf of school bent – er is een plek<br class="desktop-break" /> voor jou bij DIVD.Works.</p>
+        </div>
+      </div>
+
+      <footer class="footer container">
+        <div class="footer__main">
+          <div>
+            <a class="footer-brand" href="/nl/">DIVD.Works</a>
+            <p>Van eerste stage tot eerste baan.</p>
+          </div>
+
+          <div class="footer__links">
+            <div>
+              <h3>Platform</h3>
+              <a href="/nl/students/">Voor Studenten</a>
+              <a href="/nl/businesses/">Voor Bedrijven</a>
+              <div class="footer-lang">
+                <label for="lang-select" class="sr-only">Taal</label>
+                <select id="lang-select" aria-label="Language selector">
+                  <option value="/">English</option>
+                  <option value="/nl/">Nederlands</option>
+                  <option value="/es/">Español</option>
+                  <option value="/fr/">Français</option>
+                  <option value="/de/">Deutsch</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3>Programma's</h3>
+              <a href="/nl/programs/">Starter</a>
+              <a href="/nl/programs/">Professional</a>
+              <a href="/nl/programs/">Elite</a>
+            </div>
+            <div>
+              <h3>Bedrijf</h3>
+              <a href="/nl/company-information/">Bedrijfsinformatie</a>
+              <a href="/nl/sustainability/">Duurzaamheid</a>
+              <a href="/nl/safety/">Veiligheid</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>&copy; 2026 DIVD.Works</span>
+          <nav aria-label="Legal">
+            <a href="/privacy/policy">Privacy</a>
+            <a href="/accessibility">Toegankelijkheid</a>
+            <a href="/terms">Voorwaarden</a>
+          </nav>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    (function setupLangSelector(){
+      function initLang(){
+        const s = document.getElementById('lang-select');
+        if(!s) return;
+        s.addEventListener('change', (e) => { window.location.href = e.target.value; });
+        const path = window.location.pathname;
+        let match = '/';
+        if (path.startsWith('/nl/')) match = '/nl/';
+        else if (path.startsWith('/es/')) match = '/es/';
+        else if (path.startsWith('/fr/')) match = '/fr/';
+        else if (path.startsWith('/de/')) match = '/de/';
+        const optExists = Array.from(s.options).some(o => o.value === match);
+        if (optExists) s.value = match;
+        else if (Array.from(s.options).some(o => o.value === '/')) s.value = '/';
+        else s.selectedIndex = 0;
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLang);
+      else initLang();
+    })();
+  </script>
+
+</body>
+</html>

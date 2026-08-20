@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DIVD.Works – vom ersten Praktikum bis zum ersten Job." />
+  <title>DIVD.Works – Von Praktikanten, für Praktikanten</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="alternate" href="/" hreflang="en" />
+  <link rel="alternate" href="/nl/" hreflang="nl" />
+  <link rel="alternate" href="/es/" hreflang="es" />
+  <link rel="alternate" href="/fr/" hreflang="fr" />
+  <link rel="alternate" href="/de/" hreflang="de" />
+  <link rel="alternate" href="/" hreflang="x-default" />
+  <style media="not all">
+/* Minimal inline styles preserved */
+:root { --bg: #080808; --text: #f7f7f5; }
+.nav { display: flex; align-items: center; gap: 38px; color: #aaa; font-size: 14px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand brand--small" href="/de/" aria-label="DIVD.Works home">
+        <span class="brand__bubble">DIVD</span>
+        <span class="brand__tag">WORKS</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="/de/jobs/">Jobs</a>
+        <a href="/de/students/">Studierende</a>
+        <a href="/de/businesses/">Unternehmen</a>
+        <a href="/de/programs/">Programme</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button button--small nav-cta" href="#join">Verfügbar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <canvas class="hero__mesh" id="hero-mesh" aria-hidden="true"></canvas>
+      <div class="hero__fade" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 id="hero-title">Von Praktikanten, für Praktikanten.<br />Wir sind</h1>
+
+        <div class="hero-logo" aria-label="DIVD Works">
+          <div class="hero-logo__tag">WORKS</div>
+          <div class="hero-logo__body">DIVD</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision section-mid" id="vision" aria-labelledby="vision-title">
+      <div class="narrow content-center">
+        <p class="eyebrow">UNSERE VISION</p>
+        <h2 id="vision-title">Talent ist nicht das Problem.<br />Der Weg es zu nutzen, ist es.</h2>
+        <div class="vision__copy">
+          <p><strong>.Works</strong> ist der Architekt, der motivierte junge Talente mit der professionellen IT-Welt verbindet.</p>
+          <p>Wir überbrücken die Lücke zwischen Bildung und der IT-Branche. Studierende bewerben sich für Praktika und Unternehmen reichen IT-Projekte zur Entwicklung ein. Qualifizierte Praktikanten bewerben sich direkt auf diese Projekte, von Website-Aufträgen bis hin zu umfassenden Pentests.</p>
+          <p>Das unterstützt sowohl das Wachstum der Studierenden als auch die Ziele der Fachleute: Unternehmen erhalten für die Aufgabe geschultes Personal, während Studierende wertvolle Praxiserfahrung sammeln.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="roles section-dark" id="students" aria-labelledby="roles-title">
+      <div class="container">
+        <div class="content-center roles__heading">
+          <p class="eyebrow">EINE PLATTFORM, DREI ROLLEN</p>
+          <h2 id="roles-title">Entwickelt für Studierende,<br />Unternehmen und Schulen</h2>
+        </div>
+
+        <div class="card-grid">
+          <article class="info-card">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11a3 3 0 0 1 3 3v12a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 17.5v-12Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H14v15a3 3 0 0 1 3-3h.5a2.5 2.5 0 0 1 2.5 2.5v-12Z"/></svg>
+            </div>
+            <h3>Studierende</h3>
+            <p>Bewerbe dich für Praktika und echte IT-Projekte – von Websites bis zu Pentests. Erhalte Coaching, Mentoring und Karriereentwicklung neben deinem ersten Job.</p>
+          </article>
+
+          <article class="info-card" id="businesses">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M9 12v2h6v-2"/></svg>
+            </div>
+            <h3>Unternehmen</h3>
+            <p>Reiche IT-Projekte ein und erhalte Talent, das speziell für deine Aufgabe geschult wurde – vorausgewählt, motiviert und durch unser Programm unterstützt.</p>
+          </article>
+
+          <article class="info-card">
+            <div class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img"><path d="M12 3 5 5.5V11c0 4.8 2.9 8.2 7 10 4.1-1.8 7-5.2 7-10V5.5L12 3Z"/><path d="m9 12 2 2 4-5"/></svg>
+            </div>
+            <h3>Schulen</h3>
+            <p>Halte Studierende eingeschrieben und auf Kurs mit garantiertem Praktikumszugang, wodurch Abbrüche durch Praktikumsmangel in der IT reduziert werden.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs section-mid" id="programs" aria-labelledby="programs-title">
+      <div class="container">
+        <div class="content-center programs__heading">
+          <p class="eyebrow">PREMIUM MITGLIEDSCHAFT</p>
+          <h2 id="programs-title">Das Talent-Programm: vom<br />ersten Praktikum bis zum ersten Job</h2>
+          <p class="lead">Jeder Teilnehmer durchläuft ein vollständiges Entwicklungsprogramm – Coaching, reale Erfahrung, Mentoring und Karriereentwicklung.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Starter</h3>
+            <p class="price-card__desc">Dein erstes Praktikum, erste Schritte in Cybersecurity oder IT.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Studierender</span>
+                <strong>Kostenlos</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">Schule / Arbeitgeber</span>
+                <strong>€49/Monat</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="price-card price-card--featured">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Professional</h3>
+            <p class="price-card__desc">Aktive Praktika und Abschlussprojekte mit persönlichem Mentor.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Studierender</span>
+                <strong>€10/Monat</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">Schule / Arbeitgeber</span>
+                <strong>€89/Monat</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="price-card">
+            <p class="eyebrow price-card__eyebrow">TALENT PROGRAM</p>
+            <h3>Elite</h3>
+            <p class="price-card__desc">Top-Talente und junge Fachkräfte mit Wachstumspotenzial.</p>
+            <div class="price-row">
+              <div>
+                <span class="price-label">Studierender</span>
+                <strong>€99/Monat</strong>
+              </div>
+              <div class="price-row__right">
+                <span class="price-label">Schule / Arbeitgeber</span>
+                <strong>€399/Monat</strong>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="program-link-wrap"></div>
+      </div>
+    </section>
+
+    <section class="closing section-dark" id="join" aria-labelledby="closing-title">
+      <div class="container closing__top">
+        <div class="content-center">
+          <h2 id="closing-title">Bereit, die Brücke zu bauen?</h2>
+          <p class="lead">Ob Studierender, Unternehmen oder Schule – es gibt einen Platz<br class="desktop-break" /> für dich bei DIVD.Works.</p>
+        </div>
+      </div>
+
+      <footer class="footer container">
+        <div class="footer__main">
+          <div>
+            <a class="footer-brand" href="/de/">DIVD.Works</a>
+            <p>Vom ersten Praktikum bis zum ersten Job.</p>
+          </div>
+
+          <div class="footer__links">
+            <div>
+              <h3>Platform</h3>
+              <a href="/de/students/">Studierende</a>
+              <a href="/de/businesses/">Unternehmen</a>
+              <div class="footer-lang">
+                <label for="lang-select" class="sr-only">Sprache</label>
+                <select id="lang-select" aria-label="Language selector">
+                  <option value="/">English</option>
+                  <option value="/nl/">Nederlands</option>
+                  <option value="/es/">Español</option>
+                  <option value="/fr/">Français</option>
+                  <option value="/de/">Deutsch</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3>Programme</h3>
+              <a href="/de/programs/">Starter</a>
+              <a href="/de/programs/">Professional</a>
+              <a href="/de/programs/">Elite</a>
+            </div>
+            <div>
+              <h3>Unternehmen</h3>
+              <a href="/de/company-information/">Unternehmensinformationen</a>
+              <a href="/de/sustainability/">Nachhaltigkeit</a>
+              <a href="/de/safety/">Sicherheit</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>&copy; 2026 DIVD.Works</span>
+          <nav aria-label="Legal">
+            <a href="/privacy/policy">Datenschutz</a>
+            <a href="/accessibility">Barrierefreiheit</a>
+            <a href="/terms">Bedingungen</a>
+          </nav>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    (function setupLangSelector(){
+      function initLang(){
+        const s = document.getElementById('lang-select');
+        if(!s) return;
+        s.addEventListener('change', (e) => { window.location.href = e.target.value; });
+        const path = window.location.pathname;
+        let match = '/';
+        if (path.startsWith('/nl/')) match = '/nl/';
+        else if (path.startsWith('/es/')) match = '/es/';
+        else if (path.startsWith('/fr/')) match = '/fr/';
+        else if (path.startsWith('/de/')) match = '/de/';
+        const optExists = Array.from(s.options).some(o => o.value === match);
+        if (optExists) s.value = match;
+        else if (Array.from(s.options).some(o => o.value === '/')) s.value = '/';
+        else s.selectedIndex = 0;
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLang);
+      else initLang();
+    })();
+  </script>
+
+</body>
+</html>

@@ -6,6 +6,12 @@
   <meta name="description" content="DIVD.Works – from first internship to first job." />
   <title>DIVD.Works – By interns, for interns</title>
   <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="alternate" href="/" hreflang="en" />
+  <link rel="alternate" href="/nl/" hreflang="nl" />
+  <link rel="alternate" href="/es/" hreflang="es" />
+  <link rel="alternate" href="/fr/" hreflang="fr" />
+  <link rel="alternate" href="/de/" hreflang="de" />
+  <link rel="alternate" href="/" hreflang="x-default" />
   <style media="not all">
 :root {
   --bg: #080808;
@@ -62,7 +68,7 @@ button, input, textarea, select { font: inherit; }
   margin-inline: auto;
   min-height: 84px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
 }
@@ -535,16 +541,16 @@ h2 {
 
       <nav class="nav" id="primary-nav" aria-label="Primary navigation">
         <a href="/jobs/">Jobs</a>
-        <a href="#">Students</a>
-        <a href="#">Businesses</a>
-        <a href="#">Programs</a>
+        <a href="/students/">Students</a>
+        <a href="/businesses/">Businesses</a>
+        <a href="/programs/">Programs</a>
       </nav>
 
-      <!-- <a class="button button--small nav-cta" href="#join">Join .Works</a> -->
-      <a class="button button--small nav-cta" href="#join">Available in<div id="countdown" class="text-4xl font-bold border-4 border-[#ffd736] rounded-2xl p-4"></div></a>
-
-
+      <div class="nav-actions">
+        <a class="button button--small nav-cta" href="/join/">Join .Works</a>
+      </div>
       
+  
     </div>
   </header>
 
@@ -679,7 +685,7 @@ h2 {
         <div class="content-center">
           <h2 id="closing-title">Ready to build the bridge?</h2>
           <p class="lead">Whether you're a student, a business, or a school – there's a place<br class="desktop-break" /> for you at DIVD.Works.</p>
-         <!-- <a class="button" href="#">Join the platform in<span aria-hidden="true"><div id="countdown" class="text-4xl font-bold border-4 border-[#ffd736] rounded-2xl p-4"></div></span></a> -->
+          <a class="button" href="/join/">Join the platform in<span aria-hidden="true"></a>
 
         </div>
       </div>
@@ -694,14 +700,24 @@ h2 {
           <div class="footer__links">
             <div>
               <h3>Platform</h3>
-              <a href="#">For Students</a>
-              <a href="#">For Businesses</a>
+                <a href="/students/">For Students</a>
+                <a href="/businesses/">For Businesses</a>
+                <div class="footer-lang" aria-hidden="false">
+                  <label for="lang-select" class="sr-only">Language</label>
+                  <select id="lang-select" aria-label="Language selector">
+                    <option value="/">English</option>
+                    <option value="/nl/">Nederlands</option>
+                    <option value="/es/">Español</option>
+                    <option value="/fr/">Français</option>
+                    <option value="/de/">Deutsch</option>
+                  </select>
+                </div>
             </div>
             <div>
               <h3>Programs</h3>
-              <a href="#">Starter</a>
-              <a href="#">Professional</a>
-              <a href="#">Elite</a>
+              <a href="/programs/">Starter</a>
+              <a href="/programs/">Professional</a>
+              <a href="/programs/">Elite</a>
             </div>
             <div>
               <h3>Company</h3>
@@ -724,6 +740,25 @@ h2 {
   </main>
 
   <script>
+  (function setupLangSelector(){
+    function initLang(){
+      const s = document.getElementById('lang-select');
+      if(!s) return;
+      s.addEventListener('change', (e) => { window.location.href = e.target.value; });
+      const path = window.location.pathname;
+      let match = '/';
+      if (path.startsWith('/nl/')) match = '/nl/';
+      else if (path.startsWith('/es/')) match = '/es/';
+      else if (path.startsWith('/fr/')) match = '/fr/';
+      else if (path.startsWith('/de/')) match = '/de/';
+      const optExists = Array.from(s.options).some(o => o.value === match);
+      if (optExists) s.value = match;
+      else if (Array.from(s.options).some(o => o.value === '/')) s.value = '/';
+      else s.selectedIndex = 0;
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initLang);
+    else initLang();
+  })();
 
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('#primary-nav');
@@ -885,7 +920,7 @@ if (toggle && nav) {
     <!-- Countdown Script -->
     <script>
         // Set the date we're counting down to
-        var countDownDate = new Date("Aug 21, 2026 00:00:00").getTime();
+        var countDownDate = new Date("Sep 1, 2026 00:00:00").getTime();
 
         // Update the count down every 1 second
         var countdownfunction = setInterval(function() {
