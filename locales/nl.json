@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "jobs": "Vacatures",
+    "students": "Studenten",
+    "businesses": "Bedrijven",
+    "programs": "Programma's",
+    "join": "Doe mee"
+  },
+  "common": {
+    "brand": "DIVD.Works"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "jobs": "Jobs",
+    "students": "Students",
+    "businesses": "Businesses",
+    "programs": "Programs",
+    "join": "Join .Works"
+  },
+  "common": {
+    "brand": "DIVD.Works"
+  }
+}

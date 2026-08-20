@@ -1,0 +1,12 @@
+{
+  "nav": {
+    "jobs": "Empleos",
+    "students": "Estudiantes",
+    "businesses": "Empresas",
+    "programs": "Programas",
+    "join": "Únete"
+  },
+  "common": {
+    "brand": "DIVD.Works"
+  }
+}

@@ -19,7 +19,7 @@
         <header class="site-header" id="top"><div class="nav-shell">
             <a class="brand" href="/" aria-label="DIVD.Works home"><span class="brand__bubble">DIVD</span><span class="brand__tag">WORKS</span></a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
-            <nav class="nav" id="primary-nav" aria-label="Primary navigation"><a href="/jobs/">Jobs</a><a href="/students/">Students</a><a href="/businesses/">Businesses</a><a href="/programs/">Programs</a></nav>
+            <nav class="nav" id="primary-nav" aria-label="Primary navigation"><a href="/jobs/" data-i18n="nav.jobs">Jobs</a><a href="/students/" data-i18n="nav.students">Students</a><a href="/businesses/" data-i18n="nav.businesses">Businesses</a><a href="/programs/" data-i18n="nav.programs">Programs</a></nav>
             <div class="nav-actions"><a class="button button--small nav-cta" href="/">Back to .Works</a></div>
         </div></header>
         <main class="privacy-page">
@@ -33,7 +33,8 @@
                 <p>For general questions, contact <a href="mailto:hello@divd.works">hello@divd.works</a>.</p>
             </div></section>
         </main>
-        <footer class="footer container privacy-footer"><div class="footer__main"><div><a class="footer-brand" href="/">DIVD.Works</a><p>From first internship to first job.</p></div><div class="footer__links"><div><h3>Platform</h3><a href="/students/">For Students</a><a href="/businesses/">For Businesses</a></div><div><h3>Programs</h3><a href="/programs/#starter-title">Starter</a><a href="/programs/#professional-title">Professional</a><a href="/programs/#elite-title">Elite</a></div><div><h3>Company</h3><a href="/company-information/">Company information</a><a href="/sustainability/">Sustainability</a><a href="/safety/">Safety</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 DIVD.Works</span><nav aria-label="Legal"><a href="/privacy/policy">Privacy</a><a href="/accessibility">Accessibility</a><a href="/terms">Terms</a></nav></div></footer>
+        <footer class="footer container privacy-footer"><div class="footer__main"><div><a class="footer-brand" href="/">DIVD.Works</a><p>From first internship to first job.</p></div><div class="footer__links"><div><h3>Platform</h3><a href="/students/" data-i18n="nav.students">For Students</a><a href="/businesses/" data-i18n="nav.businesses">For Businesses</a></div><div><h3>Programs</h3><a href="/programs/#starter-title">Starter</a><a href="/programs/#professional-title">Professional</a><a href="/programs/#elite-title">Elite</a></div><div><h3>Company</h3><a href="/company-information/">Company information</a><a href="/sustainability/">Sustainability</a><a href="/safety/">Safety</a></div></div></div><div class="footer__bottom"><span>&copy; 2026 DIVD.Works</span><nav aria-label="Legal"><a href="/privacy/policy">Privacy</a><a href="/accessibility">Accessibility</a><a href="/terms">Terms</a></nav></div></footer>
         <script>const toggle = document.querySelector('.nav-toggle'); const nav = document.querySelector('#primary-nav'); if (toggle && nav) { toggle.addEventListener('click', () => { const open = nav.classList.toggle('is-open'); toggle.setAttribute('aria-expanded', String(open)); }); nav.addEventListener('click', (event) => { if (event.target instanceof HTMLAnchorElement) { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); } }); }</script>
-    </body>
+      <script src="/js/i18n.js"></script>
+</body>
 </html>
