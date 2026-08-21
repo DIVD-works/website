@@ -23,12 +23,14 @@ if (toggle && nav) {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
+  const hero = canvas.closest('.hero');
   let W = 1;
   let H = 1;
   let DPR = 1;
   let raf = 0;
   let mouseX = 0.5;
   let mouseY = 0.5;
+  let isActive = false;
 
   const ROWS = 36;
   const SAMPLES = 240;
@@ -137,7 +139,30 @@ if (toggle && nav) {
   function start() {
     cancelAnimationFrame(raf);
     resize();
+    if (!isActive) return;
     raf = requestAnimationFrame(draw);
+  }
+
+  function setActive(active) {
+    isActive = active;
+    if (!active) {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      return;
+    }
+    start();
+  }
+
+  if (hero) {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+      setActive(entry.isIntersecting);
+    }, { threshold: 0.15 });
+
+    observer.observe(hero);
+  } else {
+    setActive(true);
   }
 
   window.addEventListener('resize', start, { passive: true });
@@ -147,9 +172,10 @@ if (toggle && nav) {
   }, { passive: true });
 
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(raf);
-    else start();
+    if (document.hidden) setActive(false);
+    else if (hero && hero.getBoundingClientRect().top < window.innerHeight) setActive(true);
+    else setActive(Boolean(hero && hero.isConnected));
   });
 
-  start();
+  setActive(true);
 })();
