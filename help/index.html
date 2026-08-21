@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Help and frequently asked questions for DIVD.Works." />
+  <title>Help & FAQ – DIVD.Works</title>
+  <link rel="stylesheet" href="/css/businesses.css" />
+  <style>
+    .help-hero {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 90px 24px 80px;
+      border-bottom: 1px solid #242424;
+      background: #090909;
+    }
+
+    .help-hero .hero-inner {
+      width: min(100%, 800px);
+      text-align: center;
+    }
+
+    .help-hero h1 {
+      margin: 0;
+      font-size: clamp(42px, 4.8vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -.052em;
+      font-weight: 880;
+    }
+
+    .help-hero .hero-copy {
+      max-width: 700px;
+      margin: 28px auto 0;
+      color: #a7a7a7;
+      font-size: 17px;
+      line-height: 1.56;
+    }
+
+    .help-hero .hero-button {
+      margin-top: 28px;
+    }
+
+    .how-it-works,
+    .why-businesses {
+      background: #0d0d0d;
+    }
+
+    .faq-wrap {
+      margin-top: 52px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid #2a2a2a;
+      border-radius: 18px;
+      background: #121212;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      color: #ffd326;
+      font-size: 28px;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 22px 22px;
+      color: #a7a7a7;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .faq-answer p {
+      margin: 0;
+    }
+
+    @media (max-width: 760px) {
+      .help-hero {
+        min-height: 480px;
+        padding: 72px 20px 66px;
+      }
+
+      .help-hero .hero-copy {
+        font-size: 16px;
+      }
+
+      .faq-item summary {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .help-hero .hero-inner {
+        text-align: left;
+      }
+
+      .help-hero h1 {
+        font-size: clamp(40px, 12vw, 53px);
+      }
+
+      .help-hero .hero-copy {
+        margin-left: 0;
+      }
+
+      .help-hero .hero-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="/" aria-label="DIVD.Works home">
+        <span class="brand__bubble">DIVD</span>
+        <span class="brand__tag">WORKS</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="/jobs/" data-i18n="nav.jobs">Jobs</a>
+        <a href="/students/" data-i18n="nav.students">Students</a>
+        <a href="/businesses/" data-i18n="nav.businesses">Businesses</a>
+        <a href="/programs/" data-i18n="nav.programs">Programs</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="button button--small nav-cta" href="/join/" data-i18n="nav.join">Join .Works</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="help-hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow">HELP & FAQ</p>
+        <h1 id="hero-title">Answers for students,<br />businesses, and schools</h1>
+        <p class="hero-copy">
+          Everything you need to know about joining DIVD.Works, finding the right opportunity,
+          and getting support as you move from learning to real-world IT experience.
+        </p>
+        <a class="button hero-button" href="#faq">
+          View the FAQs
+          <span class="arrow-circle" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-shell">
+        <h2 id="how-title">How we can help</h2>
+
+        <div class="steps" aria-label="How DIVD.Works helps students, businesses, and schools">
+          <article class="step">
+            <span class="step-number">01</span>
+            <h3>Students</h3>
+            <p>Find internships, project work, mentoring, and guidance to turn learning into practical IT experience.</p>
+          </article>
+
+          <div class="step-line" aria-hidden="true"></div>
+
+          <article class="step">
+            <span class="step-number">02</span>
+            <h3>Businesses</h3>
+            <p>Submit real IT work and get matched with motivated talent supported by our development model.</p>
+          </article>
+
+          <div class="step-line" aria-hidden="true"></div>
+
+          <article class="step">
+            <span class="step-number">03</span>
+            <h3>Schools</h3>
+            <p>Support students with a clearer path from education to internships, graduation, and future employment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-businesses" id="faq" aria-labelledby="why-title">
+      <div class="section-shell">
+        <h2 id="why-title">Frequently asked questions</h2>
+
+        <div class="faq-wrap" aria-label="Frequently asked questions">
+          <details class="faq-item" open>
+            <summary>Who can join DIVD.Works?</summary>
+            <div class="faq-answer">
+              <p>DIVD.Works is for students, businesses, and schools. Students can apply for internships and IT projects, businesses can submit real work, and schools can connect students to structured learning opportunities.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is it free for students?</summary>
+            <div class="faq-answer">
+              <p>Yes, students can access the platform and opportunities without paying. Some premium support tracks are available depending on the level of coaching or program support needed.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do I apply for an internship or project?</summary>
+            <div class="faq-answer">
+              <p>Visit the Jobs section, browse the current opportunities, and apply through the relevant listing. If you are unsure which role fits best, you can also contact us for guidance.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can businesses submit their own projects?</summary>
+            <div class="faq-answer">
+              <p>Yes. Businesses can post real IT assignments and challenges. We help match them with student talent and support the process so the work is useful for both sides.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What kind of work is suitable?</summary>
+            <div class="faq-answer">
+              <p>We work with practical IT tasks such as website builds, automation, technical research, testing, and cybersecurity-related assignments. The goal is to make the work useful for both the business and the learner.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How do schools participate?</summary>
+            <div class="faq-answer">
+              <p>Schools can support students by helping them find internships and project placements that align with their education and graduation requirements. This gives students a clearer route from classroom learning to professional experience.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="cta" aria-labelledby="cta-title">
+      <div class="closing-inner">
+        <h2 id="cta-title">Need a bit more help?</h2>
+        <a class="button closing-button" href="mailto:hello@divd.works?subject=Help%20with%20DIVD.Works">
+          Contact support
+          <span class="arrow-circle" aria-hidden="true">→</span>
+        </a>
+        <a class="secondary-link" href="/join/" data-i18n="nav.join">Join the platform <span aria-hidden="true">→</span></a>
+      </div>
+
+      <footer class="footer">
+        <div class="footer-main">
+          <div>
+            <a class="footer-brand" href="/">DIVD.Works</a>
+            <p>From first internship to first job.</p>
+          </div>
+
+          <div class="footer-links">
+            <div>
+              <h3>Platform</h3>
+              <a href="/students/" data-i18n="nav.students">For Students</a>
+              <a href="/businesses/" data-i18n="nav.businesses">For Businesses</a>
+            </div>
+            <div>
+              <h3>Programs</h3>
+              <a href="/programs/#starter-title">Starter</a>
+              <a href="/programs/#professional-title">Professional</a>
+              <a href="/programs/#elite-title">Elite</a>
+            </div>
+            <div>
+              <h3>Company</h3>
+              <a href="/company-information/">Company information</a>
+              <a href="/sustainability/">Sustainability</a>
+              <a href="/safety/">Safety</a>
+              <a href="/help/">Help & FAQ</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; 2026 DIVD.Works</span>
+          <nav aria-label="Legal">
+            <a href="/privacy/policy">Privacy</a>
+            <a href="/help/">Help & FAQ</a>
+            <a href="/terms">Terms</a>
+          </nav>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="/js/script.js"></script>
+  <script src="/js/i18n.js"></script>
+</body>
+</html>
