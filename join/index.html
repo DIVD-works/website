@@ -469,7 +469,8 @@
 </div>
 
 <!-- Submit Button -->
-<button type="submit" class="w-full bg-yellow-400 text-black font-bold py-2 rounded">Submit</button>
+<button id="submitButton" type="submit" class="w-full bg-yellow-400 text-black font-bold py-2 rounded">Submit</button>
+<p id="submitError" class="text-red-500 text-sm mt-2 hidden">We could not submit your form right now. Please try again.</p>
 </form>
 
   <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
@@ -509,10 +510,14 @@
             <script>
               const canvas = document.getElementById('signatureCanvas');
               const ctx = canvas.getContext('2d');
+              const form = document.getElementById('volunteerForm');
               const signatureDataInput = document.getElementById('input_18');
               const clearButton = document.getElementById('clearSignature');
               const signatureError = document.getElementById('signatureError');
-            
+              const submitButton = document.getElementById('submitButton');
+              const submitError = document.getElementById('submitError');
+              const submitButtonLabel = submitButton.textContent;
+             
               let isDrawing = false;
             
               // Resize the canvas dynamically
@@ -555,6 +560,38 @@
               clearButton.addEventListener('click', () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 signatureDataInput.value = ''; // Clear the hidden input
+              });
+
+              form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                submitError.classList.add('hidden');
+
+                if (!signatureDataInput.value) {
+                  signatureError.classList.remove('hidden');
+                  return;
+                }
+
+                if (!form.checkValidity()) {
+                  form.reportValidity();
+                  return;
+                }
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+
+                try {
+                  await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    mode: 'no-cors'
+                  });
+
+                  window.location.href = '/join/confirmation/';
+                } catch (error) {
+                  submitError.classList.remove('hidden');
+                  submitButton.disabled = false;
+                  submitButton.textContent = submitButtonLabel;
+                }
               });
             </script>
 
