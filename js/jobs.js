@@ -119,5 +119,6 @@ if (jobsGrid && jobsEmpty && jobsCount) {
       jobsEmpty.querySelector('p').textContent = 'Please check back soon for new opportunities.';
     });
 
-  [searchInput, domainFilter, typeFilter, languageFilter, skillFilter].forEach((control) => control.addEventListener('input', render));
+  searchInput.addEventListener('input', render);
+  [domainFilter, typeFilter, languageFilter].forEach((control) => control.addEventListener('change', render));
 }
