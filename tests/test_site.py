@@ -1,0 +1,143 @@
+import functools
+import http.server
+import pathlib
+import threading
+import unittest
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+SITEMAP_NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+CORE_ROUTES = [
+    "/",
+    "/about/",
+    "/accessibility/",
+    "/businesses/",
+    "/company-information/",
+    "/de/",
+    "/es/",
+    "/fr/",
+    "/help/",
+    "/jobs/",
+    "/join/",
+    "/nl/",
+    "/privacy/policy/",
+    "/programs/",
+    "/projects/",
+    "/safety/",
+    "/students/",
+    "/sustainability/",
+    "/terms/",
+]
+
+
+class QuietHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *_args):
+        pass
+
+
+class SiteChecks(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        handler = functools.partial(QuietHandler, directory=str(ROOT))
+        cls.server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        cls.thread = threading.Thread(target=cls.server.serve_forever, daemon=True)
+        cls.thread.start()
+        cls.base_url = f"http://127.0.0.1:{cls.server.server_port}"
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.server.shutdown()
+        cls.thread.join()
+
+    @classmethod
+    def fetch(cls, path):
+        with urllib.request.urlopen(cls.base_url + path) as response:
+            return response.status, response.read()
+
+    def test_core_routes_return_success(self):
+        for route in CORE_ROUTES:
+            with self.subTest(route=route):
+                self.assertEqual(self.fetch(route)[0], 200)
+
+    def test_core_pages_have_one_h1_and_metadata(self):
+        for route in CORE_ROUTES:
+            with self.subTest(route=route):
+                _, body = self.fetch(route)
+                html = body.decode("utf-8")
+                self.assertEqual(html.lower().count("<h1"), 1)
+                self.assertIn("<title>", html.lower())
+                self.assertIn('name="description"', html.lower())
+                self.assertIn('rel="canonical"', html.lower())
+
+    def test_robots_references_sitemap(self):
+        status, body = self.fetch("/robots.txt")
+        self.assertEqual(status, 200)
+        robots = body.decode("utf-8")
+        self.assertIn("User-agent: *", robots)
+        self.assertIn("Sitemap: https://divd.works/sitemap.xml", robots)
+        self.assertIn("Disallow: /join/confirmation/", robots)
+
+    def test_sitemap_contains_only_successful_canonical_routes(self):
+        status, body = self.fetch("/sitemap.xml")
+        self.assertEqual(status, 200)
+        root = ET.fromstring(body)
+        locations = [
+            node.text
+            for node in root.findall("sm:url/sm:loc", SITEMAP_NS)
+        ]
+        self.assertEqual(len(locations), len(set(locations)))
+        self.assertNotIn("https://divd.works/join/confirmation/", locations)
+
+        for location in locations:
+            parsed = urllib.parse.urlparse(location)
+            self.assertEqual(parsed.scheme, "https")
+            self.assertEqual(parsed.netloc, "divd.works")
+            self.assertFalse(parsed.query)
+            with self.subTest(location=location):
+                self.assertEqual(self.fetch(parsed.path)[0], 200)
+
+    def test_jobs_filter_script_has_no_stale_selector(self):
+        script = (ROOT / "js" / "jobs.js").read_text(encoding="utf-8")
+        self.assertNotIn("skillFilter", script)
+        self.assertIn("skillToggle", script)
+        self.assertIn("addEventListener('change', render)", script)
+
+    def test_internal_html_links_resolve(self):
+        html_files = ROOT.rglob("*.html")
+        routes = {"/": ROOT / "index.html"}
+        for html_file in html_files:
+            relative = html_file.relative_to(ROOT)
+            route = "/" + str(relative.parent).strip("./")
+            routes[route.rstrip("/") + "/"] = html_file
+            routes[route.rstrip("/")] = html_file
+            routes["/" + str(relative)] = html_file
+
+        for html_file in ROOT.rglob("*.html"):
+            content = html_file.read_text(encoding="utf-8")
+            for href in __import__("re").findall(r'href="([^"]+)"', content):
+                if not href.startswith("/") or href.startswith(("//", "/#")):
+                    continue
+                path = urllib.parse.urlparse(href).path
+                candidates = (
+                    path,
+                    path.rstrip("/") + "/",
+                    path.rstrip("/") + "/index.html",
+                )
+                with self.subTest(source=html_file, href=href):
+                    self.assertTrue(
+                        any(candidate in routes or (ROOT / candidate.lstrip("/")).is_file()
+                            for candidate in candidates)
+                    )
+
+    def test_mobile_navigation_is_loaded_on_localized_and_home_pages(self):
+        for route in ["/", "/de/", "/es/", "/fr/", "/nl/", "/join/confirmation/"]:
+            with self.subTest(route=route):
+                _, body = self.fetch(route)
+                self.assertIn(b"/js/nav.js", body)
+
+
+if __name__ == "__main__":
+    unittest.main()
