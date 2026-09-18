@@ -105,6 +105,43 @@ class SiteChecks(unittest.TestCase):
         self.assertIn("skillToggle", script)
         self.assertIn("addEventListener('change', render)", script)
 
+    def test_shared_navigation_handler_is_loaded_once_per_page(self):
+        pages = [
+            html_file
+            for html_file in ROOT.rglob("*.html")
+            if 'class="nav-toggle"' in html_file.read_text(encoding="utf-8")
+        ]
+        for html_file in pages:
+            with self.subTest(page=html_file.relative_to(ROOT)):
+                html = html_file.read_text(encoding="utf-8")
+                self.assertEqual(html.count('/js/nav.js'), 1)
+                self.assertNotIn("js/menu.js", html)
+                self.assertNotIn("const toggle = document.querySelector('.nav-toggle')", html)
+
+    def test_legal_links_use_canonical_trailing_slash_routes(self):
+        for html_file in ROOT.rglob("*.html"):
+            with self.subTest(page=html_file.relative_to(ROOT)):
+                html = html_file.read_text(encoding="utf-8")
+                for route in ("/privacy/policy", "/accessibility", "/terms"):
+                    self.assertNotIn(f'href="{route}"', html)
+
+    def test_shared_navigation_script_is_the_only_page_nav_implementation(self):
+        for script_file in (ROOT / "js").glob("*.js"):
+            if script_file.name == "nav.js":
+                continue
+            with self.subTest(script=script_file.name):
+                script = script_file.read_text(encoding="utf-8")
+                self.assertNotIn("querySelector('.nav-toggle')", script)
+                self.assertNotIn("querySelector('#primary-nav')", script)
+
+    def test_homepage_communicates_category_and_audience(self):
+        html = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn("IT talent", html)
+        self.assertIn("students", html.lower())
+        self.assertIn("businesses", html.lower())
+        self.assertIn("schools", html.lower())
+        self.assertIn('href="/jobs/">Find an opportunity', html)
+
     def test_internal_html_links_resolve(self):
         html_files = ROOT.rglob("*.html")
         routes = {"/": ROOT / "index.html"}
