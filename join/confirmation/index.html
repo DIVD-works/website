@@ -120,32 +120,14 @@
             <div class="footer__bottom">
                 <span>&copy; 2026 DIVD.Works</span>
                 <nav aria-label="Legal">
-                    <a href="/privacy/policy">Privacy</a>
-                    <a href="/accessibility">Accessibility</a>
-                    <a href="/terms">Terms</a>
+                    <a href="/privacy/policy/">Privacy</a>
+                    <a href="/accessibility/">Accessibility</a>
+                    <a href="/terms/">Terms</a>
                 </nav>
             </div>
         </footer>
 
-        <script>
-            const toggle = document.querySelector('.nav-toggle');
-            const nav = document.querySelector('#primary-nav');
-
-            if (toggle && nav) {
-                toggle.addEventListener('click', () => {
-                    const open = nav.classList.toggle('is-open');
-                    toggle.setAttribute('aria-expanded', String(open));
-                });
-
-                nav.addEventListener('click', (event) => {
-                    if (event.target instanceof HTMLAnchorElement) {
-                        nav.classList.remove('is-open');
-                        toggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        </script>
-        <script src="/js/nav.js"></script>
         <script src="/js/i18n.js"></script>
+        <script src="/js/nav.js"></script>
     </body>
 </html>
