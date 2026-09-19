@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>DIVD.Works Newsroom</title>
+    <link>https://divd.works/newsroom/</link>
+    <description>News, people, and practical lessons from the bridge between digital talent and real work.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 17 Apr 2025 09:22:14 GMT</lastBuildDate>
+    <atom:link href="https://divd.works/newsroom/feed.xml" rel="self" type="application/rss+xml" xmlns:atom="http://www.w3.org/2005/Atom" />
+    <item>
+      <title><![CDATA[New Chief Creative Officer]]></title>
+      <link>https://divd.works/newsroom/p/new-chief-creative-officer/</link>
+      <guid isPermaLink="true">https://divd.works/newsroom/p/new-chief-creative-officer/</guid>
+      <description><![CDATA[Welcoming Our New COO & Chief Creative Officer: Nigel van Maanen We welcome Nigel van Maanen to DIVD.Works as our new Chief Creative Officer, helping shape the creative and organisational vision behind our work.]]></description>
+      <pubDate>Thu, 17 Apr 2025 09:22:14 GMT</pubDate>
+      <dc:creator>DIVD.works</dc:creator>
+      <category>People</category>
+    </item>
+    <item>
+      <title><![CDATA[DIVD.works is now live.]]></title>
+      <link>https://divd.works/newsroom/p/divdworks-is-now-live/</link>
+      <guid isPermaLink="true">https://divd.works/newsroom/p/divdworks-is-now-live/</guid>
+      <description><![CDATA[Today marks the official launch of DIVD.works. DIVD.Works connects young digital talent with real-world challenges, learning, growth, and purpose.]]></description>
+      <pubDate>Fri, 04 Apr 2025 14:04:00 GMT</pubDate>
+      <dc:creator>DIVD.works</dc:creator>
+      <category>Announcement</category>
+    </item>
+  </channel>
+</rss>
