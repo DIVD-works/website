@@ -1,6 +1,8 @@
 import functools
 import http.server
+import json
 import pathlib
+import subprocess
 import threading
 import unittest
 import urllib.parse
@@ -30,6 +32,9 @@ CORE_ROUTES = [
     "/students/",
     "/sustainability/",
     "/terms/",
+    "/newsroom/",
+    "/newsroom/p/new-chief-creative-officer/",
+    "/newsroom/p/divdworks-is-now-live/",
 ]
 
 
@@ -99,6 +104,39 @@ class SiteChecks(unittest.TestCase):
             with self.subTest(location=location):
                 self.assertEqual(self.fetch(parsed.path)[0], 200)
 
+    def test_newsroom_build_is_deterministic_and_source_backed(self):
+        source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
+        result = subprocess.run(
+            ["python", "scripts/build_newsroom.py", "--check"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(source["articles"]), 2)
+
+        for article in source["articles"]:
+            path = ROOT / "newsroom" / "p" / article["slug"] / "index.html"
+            html = path.read_text(encoding="utf-8")
+            self.assertIn(f'<link rel="canonical" href="https://divd.works/newsroom/p/{article["slug"]}/"', html)
+            self.assertIn('"@type":"NewsArticle"', html)
+            self.assertIn(article["publishedISO"], html)
+            self.assertIn(article["legacyUrl"], html)
+            self.assertIn("Migrated from the former DIVD.works newsroom.", html)
+
+    def test_newsroom_feed_contains_all_articles_and_no_subscriber_form(self):
+        status, body = self.fetch("/newsroom/feed.xml")
+        self.assertEqual(status, 200)
+        feed = body.decode("utf-8")
+        self.assertIn("<rss version=\"2.0\"", feed)
+        self.assertEqual(feed.count("<item>"), 2)
+        self.assertIn("new-chief-creative-officer", feed)
+        self.assertIn("divdworks-is-now-live", feed)
+        index = self.fetch("/newsroom/")[1].decode("utf-8")
+        self.assertNotIn("<form", index.lower())
+        self.assertNotIn("subscribe", index.lower())
+
     def test_jobs_filter_script_has_no_stale_selector(self):
         script = (ROOT / "js" / "jobs.js").read_text(encoding="utf-8")
         self.assertNotIn("skillFilter", script)
@@ -117,6 +155,17 @@ class SiteChecks(unittest.TestCase):
                 self.assertEqual(html.count('/js/nav.js'), 1)
                 self.assertNotIn("js/menu.js", html)
                 self.assertNotIn("const toggle = document.querySelector('.nav-toggle')", html)
+
+    def test_primary_navigation_links_to_newsroom(self):
+        pages = [
+            html_file
+            for html_file in ROOT.rglob("*.html")
+            if 'class="nav-toggle"' in html_file.read_text(encoding="utf-8")
+        ]
+        for html_file in pages:
+            with self.subTest(page=html_file.relative_to(ROOT)):
+                html = html_file.read_text(encoding="utf-8")
+                self.assertIn('href="/newsroom/"', html)
 
     def test_legal_links_use_canonical_trailing_slash_routes(self):
         for html_file in ROOT.rglob("*.html"):

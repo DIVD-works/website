@@ -1,0 +1,66 @@
+{
+  "section": {
+    "name": "Newsroom",
+    "tagline": "Stories from the work.",
+    "description": "News, people, and practical lessons from the bridge between digital talent and real work."
+  },
+  "articles": [
+    {
+      "slug": "new-chief-creative-officer",
+      "title": "New Chief Creative Officer",
+      "dek": "Welcoming Our New COO & Chief Creative Officer: Nigel van Maanen",
+      "excerpt": "We welcome Nigel van Maanen to DIVD.Works as our new Chief Creative Officer, helping shape the creative and organisational vision behind our work.",
+      "published": "2025-04-17",
+      "publishedISO": "2025-04-17T09:22:14Z",
+      "modifiedISO": "2025-04-17T09:22:17Z",
+      "author": "DIVD.works",
+      "topic": "People",
+      "hero": "/img/newsroom/new-chief-creative-officer.jpeg",
+      "heroAlt": "New Chief Creative Officer announcement",
+      "legacyUrl": "https://newsroom.divd.works/p/new-chief-creative-officer",
+      "paragraphs": [
+        "We proudly welcome Nigel van Maanen to DIVD.works as our new Chief Creative Officer (CCO). In his role, Nigel will serve as the guardian of our creative and organizational vision, helping shape the heart of everything we do.",
+        "Nigel’s mission is to ensure that all of our projects—whether public-facing initiatives, internal tools, or collaborative outreach—reflect our values: ethical innovation, civic responsibility, and digital safety. His role blends creative leadership with strategic oversight, guiding our teams from concept to execution with purpose and clarity."
+      ],
+      "related": [
+        {
+          "label": "Meet the organisation",
+          "href": "/about/"
+        },
+        {
+          "label": "Explore DIVD.Works",
+          "href": "/"
+        }
+      ]
+    },
+    {
+      "slug": "divdworks-is-now-live",
+      "title": "DIVD.works is now live.",
+      "dek": "Today marks the official launch of DIVD.works.",
+      "excerpt": "DIVD.Works connects young digital talent with real-world challenges, learning, growth, and purpose.",
+      "published": "2025-04-04",
+      "publishedISO": "2025-04-04T14:04:00Z",
+      "modifiedISO": "2025-04-16T19:49:39Z",
+      "author": "DIVD.works",
+      "topic": "Announcement",
+      "hero": "/img/newsroom/divdworks-is-now-live.png",
+      "heroAlt": "DIVD.Works launch artwork",
+      "legacyUrl": "https://newsroom.divd.works/p/divdworks-is-now-live",
+      "paragraphs": [
+        "DIVD.works is more than just a platform—it’s a movement. It is a space where young digital talent meets real-world challenges and where learning, growth, and purpose come together.",
+        "We empower the next generation of agile workers by providing them with the tools, experience, and community to thrive. At the same time, we help public and private partners connect with bright, driven minds who want to make a difference.",
+        "Together, we’re building a better digital society — one opportunity at a time."
+      ],
+      "related": [
+        {
+          "label": "For students",
+          "href": "/students/"
+        },
+        {
+          "label": "For businesses",
+          "href": "/businesses/"
+        }
+      ]
+    }
+  ]
+}
