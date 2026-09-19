@@ -6,9 +6,9 @@ are produced by `python scripts/build_newsroom.py`.
 
 ## Migration inventory
 
-The public Substack archive was checked on 2026-09-19. It contained two public
-posts, both migrated into the first-party source record and rendered as static
-pages:
+The public Substack archive was checked on 2026-09-19. It exposed two public
+posts through the homepage/archive at that time; both are migrated into the
+first-party source record and rendered as static pages:
 
 - `New Chief Creative Officer` — published 17 April 2025
 - `DIVD.works is now live.` — published 4 April 2025
