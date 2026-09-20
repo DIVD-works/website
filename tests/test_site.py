@@ -9,6 +9,7 @@ import unittest
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+import re
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -105,6 +106,32 @@ class SiteChecks(unittest.TestCase):
             self.assertFalse(parsed.query)
             with self.subTest(location=location):
                 self.assertEqual(self.fetch(parsed.path)[0], 200)
+
+    def test_canonical_host_is_used_for_site_metadata_and_absolute_links(self):
+        self.assertEqual((ROOT / "CNAME").read_text(encoding="utf-8").strip(), "divd.works")
+
+        html_files = [
+            html_file
+            for html_file in ROOT.rglob("*.html")
+            if ".worktrees" not in html_file.parts
+        ]
+        for html_file in html_files:
+            with self.subTest(page=html_file.relative_to(ROOT)):
+                html = html_file.read_text(encoding="utf-8")
+                canonicals = re.findall(
+                    r'<link\s+rel="canonical"\s+href="([^"]+)"',
+                    html,
+                    flags=re.IGNORECASE,
+                )
+                for canonical in canonicals:
+                    parsed = urllib.parse.urlparse(canonical)
+                    self.assertEqual(parsed.scheme, "https")
+                    self.assertEqual(parsed.netloc, "divd.works")
+
+                for href in re.findall(r'href="(https?://[^"]+)"', html):
+                    parsed = urllib.parse.urlparse(href)
+                    if parsed.netloc in {"divd.works", "www.divd.works", "my.divd.works"}:
+                        self.assertEqual(parsed.netloc, "divd.works")
 
     def test_newsroom_build_is_deterministic_and_source_backed(self):
         source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
