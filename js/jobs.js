@@ -19,9 +19,9 @@ if (jobsGrid && jobsEmpty && jobsCount) {
   }[character]));
 
   const cardTemplate = (job) => `
-    <article class="job-card">
+    <article class="job-card" data-job-id="${escapeHtml(job.id)}">
       <div class="job-card__top">
-        <h3>${escapeHtml(job.title)}</h3>
+        <h3><a class="job-card__title-link" href="/jobs/${escapeHtml(job.slug)}/">${escapeHtml(job.title)}</a></h3>
         <span class="job-card__type">${escapeHtml(job.type)}</span>
       </div>
       <p class="job-card__partner">${escapeHtml(job.partner)}</p>
@@ -34,7 +34,7 @@ if (jobsGrid && jobsEmpty && jobsCount) {
       <div class="job-card__skills" aria-label="Skills">
         ${job.skills.map((skill) => `<button class="job-card__skill" type="button" data-skill="${escapeHtml(skill)}" aria-pressed="${selectedSkills.has(skill)}">${escapeHtml(skill)}</button>`).join('')}
       </div>
-      <a class="button button--small" href="${escapeHtml(job.apply_url)}" target="_blank" rel="noopener noreferrer">Apply Now <span aria-hidden="true">&#8594;</span></a>
+      <a class="button button--small" href="/jobs/${escapeHtml(job.slug)}/">View opportunity <span aria-hidden="true">&#8594;</span></a>
     </article>`;
 
   const getSkills = () => [...new Set(jobs.flatMap((job) => job.skills))].sort((firstSkill, secondSkill) => firstSkill.localeCompare(secondSkill));
@@ -54,7 +54,15 @@ if (jobsGrid && jobsEmpty && jobsCount) {
 
   const matches = (job) => {
     const query = searchInput.value.trim().toLowerCase();
-    const searchable = [job.title, job.partner, job.location, ...job.skills].join(' ').toLowerCase();
+    const searchable = [
+      job.title,
+      job.partner,
+      job.type,
+      job.domain,
+      job.location,
+      job.language,
+      ...job.skills
+    ].join(' ').toLowerCase();
     return (!query || searchable.includes(query))
       && (!domainFilter.value || job.domain === domainFilter.value)
       && (!typeFilter.value || job.type === typeFilter.value)
@@ -108,7 +116,7 @@ if (jobsGrid && jobsEmpty && jobsCount) {
       return response.json();
     })
     .then((data) => {
-      jobs = data;
+      jobs = data.filter((job) => job.status === 'active');
       populateSkillFilter();
       updateSkillToggle();
       render();
