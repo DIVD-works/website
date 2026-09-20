@@ -10,6 +10,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import re
+import re
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -106,6 +107,48 @@ class SiteChecks(unittest.TestCase):
             self.assertFalse(parsed.query)
             with self.subTest(location=location):
                 self.assertEqual(self.fetch(parsed.path)[0], 200)
+
+    def test_jobs_build_is_deterministic_and_crawlable(self):
+        result = subprocess.run(
+            ["python", "scripts/build_jobs.py", "--check"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        jobs = json.loads((ROOT / "data" / "jobs.json").read_text(encoding="utf-8"))
+        active_jobs = [job for job in jobs if job["status"] == "active"]
+        index = (ROOT / "jobs" / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(index.count("class=\"job-card\""), len(active_jobs))
+
+        for job in jobs:
+            path = ROOT / "jobs" / job["slug"] / "index.html"
+            self.assertTrue(path.is_file())
+            html = path.read_text(encoding="utf-8")
+            canonical = f'https://divd.works/jobs/{job["slug"]}/'
+            self.assertIn(f'<link rel="canonical" href="{canonical}"', html)
+            self.assertIn(job["title"], html)
+            self.assertNotIn("example.com", html)
+            if job["status"] == "active":
+                self.assertIn('"@type":"JobPosting"', html)
+                self.assertNotIn('name="robots" content="noindex', html)
+            else:
+                self.assertNotIn('"@type":"JobPosting"', html)
+                self.assertIn('name="robots" content="noindex,follow"', html)
+
+        sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        for job in active_jobs:
+            self.assertIn(f"https://divd.works/jobs/{job['slug']}/", sitemap)
+
+    def test_jobs_index_has_server_rendered_links_and_no_placeholder_apply_urls(self):
+        index = (ROOT / "jobs" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("Loading vacancies", index)
+        self.assertNotIn("example.com", index)
+        jobs = json.loads((ROOT / "data" / "jobs.json").read_text(encoding="utf-8"))
+        for job in jobs:
+            if job["status"] == "active":
+                self.assertIn(f'href="/jobs/{job["slug"]}/"', index)
 
     def test_canonical_host_is_used_for_site_metadata_and_absolute_links(self):
         self.assertEqual((ROOT / "CNAME").read_text(encoding="utf-8").strip(), "divd.works")

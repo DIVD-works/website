@@ -24,3 +24,17 @@ without a runtime or hosted CMS dependency.
 
 The jobs board filters are intentionally client-side, so filtering does not
 create parameterized URLs or additional crawlable pages.
+
+Job opportunity pages and their crawlable index cards are generated from
+`data/jobs.json`:
+
+```bash
+python scripts/build_jobs.py
+python scripts/build_jobs.py --check
+```
+
+Only records with `status: "active"` are linked from the jobs index and
+sitemap. Expired records may retain a generated detail page for a controlled
+`noindex` state, but they are not presented as active opportunities. Real
+application destinations must be supplied in `application_url`; the generator
+does not invent or retain placeholder URLs.

@@ -1,38 +1,59 @@
 [
   {
     "id": "divd-001",
+    "slug": "junior-penetration-testing-intern",
+    "status": "active",
+    "date_posted": "2026-08-19",
+    "valid_through": null,
     "title": "Junior Penetration Testing Intern",
     "partner": "DIVD Academy",
     "type": "Internship",
+    "employment_type": "INTERN",
     "domain": "Offensive Security",
     "location": "Utrecht / Hybrid",
     "language": "Dutch / English",
     "stipend": true,
     "skills": ["Web security", "Burp Suite", "Linux"],
-    "apply_url": "https://example.com/apply/divd-001"
+    "description": "Internship opportunity in Offensive Security at DIVD Academy. The listed skills are Web security, Burp Suite, and Linux.",
+    "application_url": null,
+    "application_status": "pending_owner_confirmation"
   },
   {
     "id": "divd-002",
+    "slug": "threat-intelligence-graduation-project",
+    "status": "active",
+    "date_posted": "2026-08-19",
+    "valid_through": null,
     "title": "Threat Intelligence Graduation Project",
     "partner": "Northstar Security",
     "type": "Thesis",
+    "employment_type": "OTHER",
     "domain": "Threat Intel",
     "location": "Remote (EU)",
     "language": "English",
     "stipend": false,
     "skills": ["OSINT", "Python", "Research"],
-    "apply_url": "https://example.com/apply/divd-002"
+    "description": "Graduation project opportunity in Threat Intel at Northstar Security. The listed skills are OSINT, Python, and Research.",
+    "application_url": null,
+    "application_status": "pending_owner_confirmation"
   },
   {
     "id": "divd-003",
+    "slug": "ai-security-research-assistant",
+    "status": "active",
+    "date_posted": "2026-08-19",
+    "valid_through": null,
     "title": "AI Security Research Assistant",
     "partner": "Signal Labs",
     "type": "Part-time",
+    "employment_type": "PART_TIME",
     "domain": "AI",
     "location": "Amsterdam / Hybrid",
     "language": "English",
     "stipend": true,
     "skills": ["Python", "Machine learning", "Prompt security"],
-    "apply_url": "https://example.com/apply/divd-003"
+    "description": "Part-time research opportunity in AI at Signal Labs. The listed skills are Python, Machine learning, and Prompt security.",
+    "application_url": null,
+    "application_status": "pending_owner_confirmation"
   }
 ]
