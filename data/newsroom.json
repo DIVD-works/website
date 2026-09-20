@@ -6,6 +6,37 @@
   },
   "articles": [
     {
+      "slug": "loek-ota-chief-operating-officer",
+      "title": "Loek Ota steps into role as Chief Operating Officer",
+      "dek": "From DIVD Academy student intern to COO: Loek Ota takes the operational helm at DIVD.Works.",
+      "excerpt": "Loek Ota has stepped into the role of Chief Operating Officer after helping build DIVD.Works from the ground up.",
+      "published": "2026-03-20",
+      "publishedISO": "2026-03-20T00:00:00Z",
+      "modifiedISO": "2026-03-20T00:00:00Z",
+      "author": "DIVD.Works",
+      "topic": "People",
+      "hero": "/img/photos/loek.jpg",
+      "heroAlt": "Loek Ota, Chief Operating Officer at DIVD.Works",
+      "sourceUrl": "https://www.linkedin.com/posts/divd-works_home-activity-7472274999538786304-js2I",
+      "sourceLabel": "Based on DIVD.Works' public LinkedIn announcement.",
+      "paragraphs": [
+        "On 20 March 2026, DIVD.Works announced that Loek Ota is stepping into the role of Chief Operating Officer (COO).",
+        "Loek first joined DIVD Academy as a student intern through the Young Talent Program. Since then, he has helped build the organisation from the ground up, most recently driving our mission forward as Head of People & Culture.",
+        "This next step reflects what we believe is possible when young talent gets the right coaching, passion, and environment to grow. We are proud of Loek and look forward to the next phase of DIVD.Works under his operational leadership.",
+        "Congratulations, Loek!"
+      ],
+      "related": [
+        {
+          "label": "Meet the organisation",
+          "href": "/about/"
+        },
+        {
+          "label": "Explore DIVD.Works",
+          "href": "/"
+        }
+      ]
+    },
+    {
       "slug": "new-chief-creative-officer",
       "title": "New Chief Creative Officer",
       "dek": "Welcoming Our New COO & Chief Creative Officer: Nigel van Maanen",

@@ -266,6 +266,22 @@ def article_page(article: dict[str, Any], all_articles: list[dict[str, Any]]) ->
     )
     more = [item for item in all_articles if item["slug"] != article["slug"]]
     more_cards = "\n".join(article_card(item) for item in more)
+    if article.get("legacyUrl"):
+        provenance = (
+            "          <p><strong>Migrated from the former DIVD.works newsroom.</strong> "
+            "The original publication date is preserved. "
+            f'<a href="{esc(article["legacyUrl"])}" rel="noopener noreferrer">View the original source '
+            '<span aria-hidden="true">↗</span></a></p>'
+        )
+    elif article.get("sourceUrl"):
+        source_label = article.get("sourceLabel", "Based on a public announcement.")
+        provenance = (
+            f'          <p><strong>{esc(source_label)}</strong> '
+            f'<a href="{esc(article["sourceUrl"])}" rel="noopener noreferrer">View the original source '
+            '<span aria-hidden="true">↗</span></a></p>'
+        )
+    else:
+        provenance = ""
     body = f"""    <main>
       <article class="newsroom-article newsroom-shell">
         <div class="newsroom-article__crumbs"><a href="/newsroom/">Newsroom</a><span aria-hidden="true">/</span><span>{esc(article['topic'])}</span></div>
@@ -292,7 +308,7 @@ def article_page(article: dict[str, Any], all_articles: list[dict[str, Any]]) ->
           </aside>
         </div>
         <div class="newsroom-provenance">
-          <p><strong>Migrated from the former DIVD.works newsroom.</strong> The original publication date is preserved. <a href="{esc(article['legacyUrl'])}" rel="noopener noreferrer">View the original source <span aria-hidden="true">↗</span></a></p>
+{provenance}
         </div>
       </article>
       <section class="newsroom-shell newsroom-more" aria-labelledby="more-title">

@@ -1,4 +1,5 @@
 import functools
+import html as html_module
 import http.server
 import json
 import pathlib
@@ -33,6 +34,7 @@ CORE_ROUTES = [
     "/sustainability/",
     "/terms/",
     "/newsroom/",
+    "/newsroom/p/loek-ota-chief-operating-officer/",
     "/newsroom/p/new-chief-creative-officer/",
     "/newsroom/p/divdworks-is-now-live/",
 ]
@@ -114,7 +116,7 @@ class SiteChecks(unittest.TestCase):
             check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual(len(source["articles"]), 2)
+        self.assertEqual(len(source["articles"]), 3)
 
         for article in source["articles"]:
             path = ROOT / "newsroom" / "p" / article["slug"] / "index.html"
@@ -122,17 +124,23 @@ class SiteChecks(unittest.TestCase):
             self.assertIn(f'<link rel="canonical" href="https://divd.works/newsroom/p/{article["slug"]}/"', html)
             self.assertIn('"@type":"NewsArticle"', html)
             self.assertIn(article["publishedISO"], html)
-            self.assertIn(article["legacyUrl"], html)
-            self.assertIn("Migrated from the former DIVD.works newsroom.", html)
+            source_url = article.get("legacyUrl") or article.get("sourceUrl")
+            self.assertIn(source_url, html)
+            if article.get("legacyUrl"):
+                self.assertIn("Migrated from the former DIVD.works newsroom.", html)
+            else:
+                self.assertIn(html_module.escape(article["sourceLabel"]), html)
+                self.assertNotIn("Migrated from the former DIVD.works newsroom.", html)
 
     def test_newsroom_feed_contains_all_articles_and_no_subscriber_form(self):
         status, body = self.fetch("/newsroom/feed.xml")
         self.assertEqual(status, 200)
         feed = body.decode("utf-8")
         self.assertIn("<rss version=\"2.0\"", feed)
-        self.assertEqual(feed.count("<item>"), 2)
-        self.assertIn("new-chief-creative-officer", feed)
-        self.assertIn("divdworks-is-now-live", feed)
+        source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
+        self.assertEqual(feed.count("<item>"), len(source["articles"]))
+        for article in source["articles"]:
+            self.assertIn(article["slug"], feed)
         index = self.fetch("/newsroom/")[1].decode("utf-8")
         self.assertNotIn("<form", index.lower())
         self.assertNotIn("subscribe", index.lower())
