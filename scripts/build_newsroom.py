@@ -49,6 +49,36 @@ def json_ld(value: dict[str, Any]) -> str:
     )
 
 
+def breadcrumb_data(items: list[tuple[str, str]]) -> dict[str, Any]:
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": position,
+                "name": name,
+                "item": absolute_url(path),
+            }
+            for position, (name, path) in enumerate(items, start=1)
+        ],
+    }
+
+
+def breadcrumbs(items: list[tuple[str, str]]) -> str:
+    links = []
+    for index, (name, path) in enumerate(items):
+        if index == len(items) - 1:
+            links.append(f"<span aria-current=\"page\">{esc(name)}</span>")
+        else:
+            links.append(f"<a href=\"{esc(path)}\">{esc(name)}</a>")
+    return (
+        '<nav class="newsroom-article__crumbs" aria-label="Breadcrumb">'
+        + " <span aria-hidden=\"true\">/</span> ".join(links)
+        + "</nav>"
+    )
+
+
 def header(active: str = "newsroom") -> str:
     newsroom_class = ' class="is-active"' if active == "newsroom" else ""
     return f"""    <header class="site-header" id="top">
@@ -118,22 +148,26 @@ def document(
     canonical: str,
     body: str,
     structured_data: dict[str, Any],
+    extra_structured_data: list[dict[str, Any]] | None = None,
     og_type: str = "website",
     hero_image: str | None = None,
     article_published: str | None = None,
     article_modified: str | None = None,
 ) -> str:
     image_meta = (
-        f'    <meta property="og:image" content="{esc(absolute_url(hero_image))}" />\n'
-        f'    <meta name="twitter:image" content="{esc(absolute_url(hero_image))}" />\n'
-        if hero_image
-        else ""
+        f'    <meta property="og:image" content="{esc(absolute_url(hero_image or "/img/stock/divd-works.png"))}" />\n'
+        f'    <meta name="twitter:image" content="{esc(absolute_url(hero_image or "/img/stock/divd-works.png"))}" />\n'
     )
     article_meta = (
         f'    <meta property="article:published_time" content="{esc(article_published)}" />\n'
         f'    <meta property="article:modified_time" content="{esc(article_modified)}" />\n'
         if article_published and article_modified
         else ""
+    )
+    schemas = [structured_data, *(extra_structured_data or [])]
+    schema_scripts = "\n".join(
+        f'    <script type="application/ld+json">{json_ld(schema)}</script>'
+        for schema in schemas
     )
     return f"""<!doctype html>
 <html lang="en">
@@ -156,7 +190,7 @@ def document(
     <meta name="twitter:title" content="{esc(title)}" />
     <meta name="twitter:description" content="{esc(description)}" />
 {image_meta}{article_meta}    <meta name="author" content="DIVD.works" />
-    <script type="application/ld+json">{json_ld(structured_data)}</script>
+{schema_scripts}
   </head>
   <body class="newsroom-page">
 {header()}
@@ -284,7 +318,7 @@ def article_page(article: dict[str, Any], all_articles: list[dict[str, Any]]) ->
         provenance = ""
     body = f"""    <main>
       <article class="newsroom-article newsroom-shell">
-        <div class="newsroom-article__crumbs"><a href="/newsroom/">Newsroom</a><span aria-hidden="true">/</span><span>{esc(article['topic'])}</span></div>
+        {breadcrumbs([("Newsroom", "/newsroom/"), (article["topic"], url)])}
         <header class="newsroom-article__header">
           <p class="newsroom-kicker">{esc(article['topic'])}</p>
           <h1>{esc(article['title'])}</h1>
@@ -339,12 +373,16 @@ def article_page(article: dict[str, Any], all_articles: list[dict[str, Any]]) ->
         "author": {"@type": "Organization", "name": article["author"], "url": SITE_URL},
         "publisher": publisher(),
     }
+    breadcrumb_schema = breadcrumb_data(
+        [("Newsroom", "/newsroom/"), (article["topic"], url)]
+    )
     return document(
         title=f"{article['title']} | DIVD.Works Newsroom",
         description=article["dek"],
         canonical=url,
         body=body,
         structured_data=structured,
+        extra_structured_data=[breadcrumb_schema],
         og_type="article",
         hero_image=article["hero"],
         article_published=article["publishedISO"],

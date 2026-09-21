@@ -94,6 +94,13 @@ if (jobsGrid && jobsEmpty && jobsCount) {
     if (!skillMenu.hidden) skillSearch.focus();
   });
 
+  document.addEventListener('click', (event) => {
+    if (!skillMenu.hidden && !event.target.closest('#job-skill-filter')) {
+      skillMenu.hidden = true;
+      updateSkillToggle();
+    }
+  });
+
   skillSearch.addEventListener('input', () => {
     const query = skillSearch.value.trim().toLowerCase();
     skillOptions.querySelectorAll('.skills-filter__option').forEach((option) => {

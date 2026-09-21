@@ -1,0 +1,565 @@
+{
+  "updated": "2026-09-21",
+  "resources": [
+    {
+      "slug": "students/prepare-for-a-cybersecurity-internship",
+      "audience": "Students",
+      "kicker": "STUDENT GUIDE",
+      "title": "Prepare for a cybersecurity internship",
+      "description": "A practical, evidence-first checklist for choosing a security internship and preparing to do safe, useful work.",
+      "intro": "A good internship starts before the first day. Use the public opportunity details as your source of truth, prepare questions about the work, and make your boundaries explicit before you receive access.",
+      "sections": [
+        {
+          "title": "Read the opportunity as a brief",
+          "paragraphs": [
+            "Check the domain, type, location, language, listed skills, and application status on the opportunity page. Those fields describe the public record; they do not replace a conversation about your school requirements or the work itself.",
+            "Write down what you already know, what you can demonstrate, and what you need to learn. A short portfolio, lab note, or project explanation is more useful than a list of tools without context."
+          ],
+          "bullets": [
+            "Which outcome should the internship produce?",
+            "Which systems, data, or environments are in scope?",
+            "Who reviews the work and how do you ask for help?"
+          ]
+        },
+        {
+          "title": "Prepare for responsible security work",
+          "paragraphs": [
+            "Only test systems when the owner has given clear permission and the scope is written down. Keep notes about the instruction you received, the limits of the work, and where to report a concern.",
+            "If a listing or project leaves a safety question unanswered, ask before acting. The DIVD.Works safety guidance is the baseline for respectful, authorised work."
+          ],
+          "bullets": [
+            "Never access, use, or share systems or information without permission.",
+            "Raise an incident or unsafe situation as soon as possible.",
+            "Treat a placement as a learning relationship: feedback and questions are part of the work."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Browse current opportunities",
+        "href": "/jobs/"
+      },
+      "source_context": [
+        {
+          "label": "For Students",
+          "href": "/students/"
+        },
+        {
+          "label": "Current opportunities",
+          "href": "/jobs/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Choose between an internship and graduation project",
+          "href": "/resources/students/internship-or-graduation-project/"
+        },
+        {
+          "label": "Work safely on a security project",
+          "href": "/resources/students/work-safely-on-security-projects/"
+        }
+      ]
+    },
+    {
+      "slug": "students/internship-or-graduation-project",
+      "audience": "Students",
+      "kicker": "STUDENT GUIDE",
+      "title": "Choose between an internship and a graduation project",
+      "description": "A simple way to compare the questions that matter when choosing an internship or graduation project.",
+      "intro": "The public jobs board distinguishes internships, thesis projects, and part-time opportunities. Your best route depends on your course requirements, timing, supervision needs, and the work you want to show afterwards.",
+      "sections": [
+        {
+          "title": "Start with your school requirements",
+          "paragraphs": [
+            "Before comparing titles, check what your programme requires: a placement, a thesis, a graduation project, or another form of assessed work. Confirm the required duration, supervisor, deliverables, and approval process with your school.",
+            "Then compare those requirements with the details on each live listing. If a field is not stated, treat it as a question to ask rather than an assumption."
+          ],
+          "bullets": [
+            "What must be assessed, and by whom?",
+            "Does the work need a named school and workplace supervisor?",
+            "Which location, language, and schedule constraints are real for you?"
+          ]
+        },
+        {
+          "title": "Compare the work, not just the label",
+          "paragraphs": [
+            "An internship may be the right entry point for building practical experience; a graduation project may be the right fit when you need a defined research or delivery question. Neither label guarantees a particular outcome.",
+            "Ask how success will be reviewed, what access is needed, and how the project can be described in your portfolio without exposing confidential information."
+          ],
+          "bullets": [
+            "What is the concrete question or deliverable?",
+            "What support and review rhythm are available?",
+            "What can you publish or discuss after the work is complete?"
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "See the pathway overview",
+        "href": "/students/opportunities/"
+      },
+      "source_context": [
+        {
+          "label": "Student pathways",
+          "href": "/students/opportunities/"
+        },
+        {
+          "label": "Current opportunities",
+          "href": "/jobs/"
+        },
+        {
+          "label": "Terms and expectations",
+          "href": "/terms/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Prepare for a cybersecurity internship",
+          "href": "/resources/students/prepare-for-a-cybersecurity-internship/"
+        },
+        {
+          "label": "Work safely on a security project",
+          "href": "/resources/students/work-safely-on-security-projects/"
+        }
+      ]
+    },
+    {
+      "slug": "students/work-safely-on-security-projects",
+      "audience": "Students",
+      "kicker": "STUDENT GUIDE",
+      "title": "Work safely on a security project",
+      "description": "The questions and boundaries to establish before doing authorised security work as a student.",
+      "intro": "Security projects can be valuable learning opportunities when the permission, scope, handling rules, and escalation route are clear. If any of those are missing, pause and ask.",
+      "sections": [
+        {
+          "title": "Agree the boundary before the tool",
+          "paragraphs": [
+            "A project brief should make it possible to tell the difference between an authorised test and an unsafe action. Confirm the owner, target, time window, allowed methods, and what is explicitly out of scope.",
+            "Do not infer permission from curiosity, a hostname, or a credential that happens to work. Written scope protects you, the organisation, and the people whose data may be involved."
+          ],
+          "bullets": [
+            "Record the authorisation and the person who can change it.",
+            "Use test data and least-privilege access where possible.",
+            "Stop and escalate when the observed situation differs from the brief."
+          ]
+        },
+        {
+          "title": "Handle findings with care",
+          "paragraphs": [
+            "Keep notes limited to what the project needs and follow the organisation's handling instructions. Report a concern through the agreed route instead of sharing it broadly or turning it into a public example.",
+            "The DIVD.Works safety page is a concise baseline. The project owner and school may add stricter requirements."
+          ],
+          "bullets": [
+            "Do not access, use, or share systems and information without permission.",
+            "Report concerns, incidents, or unsafe behaviour promptly.",
+            "Ask your supervisor when the brief, evidence, or next step is unclear."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Read the safety guidance",
+        "href": "/safety/"
+      },
+      "source_context": [
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        },
+        {
+          "label": "Student journey",
+          "href": "/students/"
+        },
+        {
+          "label": "Terms and expectations",
+          "href": "/terms/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Prepare for a cybersecurity internship",
+          "href": "/resources/students/prepare-for-a-cybersecurity-internship/"
+        },
+        {
+          "label": "Scope a cybersecurity student project safely",
+          "href": "/resources/employers/scope-a-cybersecurity-student-project/"
+        }
+      ]
+    },
+    {
+      "slug": "employers/write-a-good-it-internship-assignment",
+      "audience": "Employers",
+      "kicker": "EMPLOYER GUIDE",
+      "title": "Write a good IT internship assignment",
+      "description": "A practical brief structure for employers who want a student to do useful, bounded IT work.",
+      "intro": "A clear assignment gives a student a fair chance to decide whether the work fits. It also gives the supervisor a shared reference for scope, support, and review.",
+      "sections": [
+        {
+          "title": "Describe the work in observable terms",
+          "paragraphs": [
+            "Start with the problem, the intended outcome, and the context. Name the systems, users, constraints, and decisions the student can influence. Avoid turning a broad wish list into a placement brief.",
+            "List the skills that are useful without treating every listed tool as a hard gate. Explain what the student can learn and what support the organisation will provide."
+          ],
+          "bullets": [
+            "One clear question or deliverable.",
+            "A realistic scope and a definition of done.",
+            "The location, language, timing, and access requirements.",
+            "A named supervisor and a review rhythm."
+          ]
+        },
+        {
+          "title": "Make the assignment safe to start",
+          "paragraphs": [
+            "Access, data handling, and security expectations belong in the brief, not only in an onboarding conversation. If the work involves production systems or personal data, state the boundary and escalation route explicitly.",
+            "A student should be able to ask what is allowed before they are expected to act."
+          ],
+          "bullets": [
+            "State what is in scope and what is not.",
+            "Provide test data or a safe environment where possible.",
+            "Explain how an incident or concern is reported."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Visit For Businesses",
+        "href": "/businesses/"
+      },
+      "source_context": [
+        {
+          "label": "For Businesses",
+          "href": "/businesses/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        },
+        {
+          "label": "Current public listings",
+          "href": "/jobs/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Scope a cybersecurity student project safely",
+          "href": "/resources/employers/scope-a-cybersecurity-student-project/"
+        },
+        {
+          "label": "Supervise junior technical talent",
+          "href": "/resources/employers/supervise-junior-technical-talent/"
+        }
+      ]
+    },
+    {
+      "slug": "employers/scope-a-cybersecurity-student-project",
+      "audience": "Employers",
+      "kicker": "EMPLOYER GUIDE",
+      "title": "Scope a cybersecurity student project safely",
+      "description": "A permission-first checklist for turning a security question into a bounded student project.",
+      "intro": "A student security project needs a narrower brief than a slogan such as “find vulnerabilities”. Define the authority, targets, methods, evidence, and escalation route before the work begins.",
+      "sections": [
+        {
+          "title": "Write the authorisation down",
+          "paragraphs": [
+            "Name the system owner, the target, the time window, the allowed methods, and the actions that require a separate decision. Treat credentials, data, and third-party systems as explicit scope questions.",
+            "If the project changes, update the authorisation before the student proceeds. A supervisor should be reachable while the work is active."
+          ],
+          "bullets": [
+            "Owner and accountable supervisor.",
+            "In-scope hosts, applications, accounts, and environments.",
+            "Out-of-scope systems, data, and techniques.",
+            "Stop conditions and an escalation contact."
+          ]
+        },
+        {
+          "title": "Plan evidence and disclosure",
+          "paragraphs": [
+            "Agree what evidence is necessary to demonstrate the finding and how it will be stored. Prefer the minimum evidence needed, protect personal or confidential data, and define who receives the report.",
+            "Do not ask a student to publish a finding or share it outside the agreed route. Review the project with the school when assessment requirements affect the handling plan."
+          ],
+          "bullets": [
+            "Use test data and least-privilege access where possible.",
+            "Set a reporting format and response owner.",
+            "Close access and archive or delete project data when agreed."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Submit or discuss a project",
+        "href": "/businesses/"
+      },
+      "source_context": [
+        {
+          "label": "For Businesses",
+          "href": "/businesses/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        },
+        {
+          "label": "Student safety guide",
+          "href": "/resources/students/work-safely-on-security-projects/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Write a good IT internship assignment",
+          "href": "/resources/employers/write-a-good-it-internship-assignment/"
+        },
+        {
+          "label": "Supervise junior technical talent",
+          "href": "/resources/employers/supervise-junior-technical-talent/"
+        }
+      ]
+    },
+    {
+      "slug": "employers/supervise-junior-technical-talent",
+      "audience": "Employers",
+      "kicker": "EMPLOYER GUIDE",
+      "title": "Supervise junior technical talent",
+      "description": "A straightforward rhythm for helping a student do useful work without removing their ownership.",
+      "intro": "Good supervision is not constant task assignment. It is a clear starting brief, accessible context, regular review, and a safe route for questions or mistakes.",
+      "sections": [
+        {
+          "title": "Set a rhythm the student can rely on",
+          "paragraphs": [
+            "Agree how the student starts, where work is documented, when progress is reviewed, and who can unblock a question. Put the first small deliverable on the calendar so the placement can move from orientation to evidence.",
+            "Use reviews to discuss the reasoning behind the work, not only whether a task is finished. This creates a useful learning record without promising a particular career outcome."
+          ],
+          "bullets": [
+            "A first-week orientation and a first bounded deliverable.",
+            "Regular technical and learning check-ins.",
+            "Feedback in writing when it changes the brief or expectations."
+          ]
+        },
+        {
+          "title": "Make escalation normal",
+          "paragraphs": [
+            "Students should know that pausing to ask is a responsible technical action. Make it easy to report uncertainty, accidental access, a security concern, or a change in the project's risk.",
+            "Coordinate with the school and any DIVD.Works mentor when an issue affects assessment, safety, or the agreed project boundary."
+          ],
+          "bullets": [
+            "Name the supervisor and backup contact.",
+            "Review access as the project changes.",
+            "Close the placement with feedback, handover, and a safe data-retention decision."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Visit For Businesses",
+        "href": "/businesses/"
+      },
+      "source_context": [
+        {
+          "label": "For Businesses",
+          "href": "/businesses/"
+        },
+        {
+          "label": "For Students",
+          "href": "/students/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Write a good IT internship assignment",
+          "href": "/resources/employers/write-a-good-it-internship-assignment/"
+        },
+        {
+          "label": "Scope a cybersecurity student project safely",
+          "href": "/resources/employers/scope-a-cybersecurity-student-project/"
+        }
+      ]
+    },
+    {
+      "slug": "schools/internship-readiness",
+      "audience": "Schools",
+      "kicker": "SCHOOL GUIDE",
+      "title": "Make internship readiness explicit",
+      "description": "A practical checklist for schools helping students move from study requirements to a safe, useful placement.",
+      "intro": "Students need more than a vacancy link. A school can make the transition clearer by aligning requirements, preparation, supervision, and escalation before a placement starts.",
+      "sections": [
+        {
+          "title": "Translate requirements into questions",
+          "paragraphs": [
+            "Give students a short checklist for comparing an opportunity with their programme: required deliverable, duration, supervisor, assessment route, location, language, and access constraints.",
+            "Where a public listing does not answer a question, make the question visible. A missing field should trigger a conversation, not an assumption."
+          ],
+          "bullets": [
+            "What must the student deliver for the programme?",
+            "Who approves the workplace and supervises the learning?",
+            "How are concerns or a mismatch escalated?"
+          ]
+        },
+        {
+          "title": "Prepare for the first conversation",
+          "paragraphs": [
+            "Help students explain what they know, what they want to practise, and what support they need. This improves the quality of the first conversation without promising that every opportunity will be a fit.",
+            "Use the current student pathway and safety guidance as shared reference points for that preparation."
+          ],
+          "bullets": [
+            "Bring the programme requirements and timeline.",
+            "Ask how the work will be reviewed.",
+            "Confirm what information and systems the student may access."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Explore the schools route",
+        "href": "/help/#schools"
+      },
+      "source_context": [
+        {
+          "label": "For Students",
+          "href": "/students/"
+        },
+        {
+          "label": "Student pathways",
+          "href": "/students/opportunities/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Build a school–employer collaboration",
+          "href": "/resources/schools/school-employer-collaboration/"
+        },
+        {
+          "label": "Ask better placement questions",
+          "href": "/resources/schools/ask-better-placement-questions/"
+        }
+      ]
+    },
+    {
+      "slug": "schools/school-employer-collaboration",
+      "audience": "Schools",
+      "kicker": "SCHOOL GUIDE",
+      "title": "Build a school–employer collaboration",
+      "description": "A shared checklist for schools and employers designing a placement around learning, useful work, and clear responsibility.",
+      "intro": "The strongest placement conversations connect three things: what the student must learn, what the organisation needs, and how both sides will notice when the plan needs to change.",
+      "sections": [
+        {
+          "title": "Align the three briefs",
+          "paragraphs": [
+            "Bring the school learning outcomes, the employer's project brief, and the student's development goals into one conversation. Record the overlap and the gaps before approval.",
+            "Keep the plan concrete enough for a student to start and flexible enough for a supervisor to adapt it safely."
+          ],
+          "bullets": [
+            "Learning outcomes and assessment evidence.",
+            "Project deliverable, scope, and access boundary.",
+            "Student support, workplace supervision, and school contact."
+          ]
+        },
+        {
+          "title": "Agree check-ins and escalation",
+          "paragraphs": [
+            "Decide when school and employer review progress together, and who is contacted when the student's safety, learning, or project scope is at risk.",
+            "This is a coordination pattern, not a claim that every placement has the same process. Document the agreement for the specific student and organisation."
+          ],
+          "bullets": [
+            "A named contact on each side.",
+            "A review point before the project is too far off course.",
+            "A route for changing scope or ending access safely."
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Explore the schools route",
+        "href": "/help/#schools"
+      },
+      "source_context": [
+        {
+          "label": "For Businesses",
+          "href": "/businesses/"
+        },
+        {
+          "label": "For Students",
+          "href": "/students/"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Make internship readiness explicit",
+          "href": "/resources/schools/internship-readiness/"
+        },
+        {
+          "label": "Ask better placement questions",
+          "href": "/resources/schools/ask-better-placement-questions/"
+        }
+      ]
+    },
+    {
+      "slug": "schools/ask-better-placement-questions",
+      "audience": "Schools",
+      "kicker": "SCHOOL GUIDE",
+      "title": "Ask better placement questions",
+      "description": "Questions schools can use to check fit, support, safety, and learning before a student starts.",
+      "intro": "A placement is easier to support when the important questions are answered before the first access request. Use this list as a conversation starter, not as a substitute for the specific agreement.",
+      "sections": [
+        {
+          "title": "Questions about fit",
+          "paragraphs": [
+            "Ask what the student will do, what they will learn, and what evidence will show progress. Compare those answers with the programme's requirements and the public listing.",
+            "If the work is remote or hybrid, ask how communication, supervision, and access will work in practice."
+          ],
+          "bullets": [
+            "What is the first deliverable?",
+            "What skills are helpful, and what can be learned?",
+            "Who reviews the work and how often?"
+          ]
+        },
+        {
+          "title": "Questions about safety and continuity",
+          "paragraphs": [
+            "Ask who owns the systems and data, what the student is authorised to access, and where a concern is reported. Confirm what happens if the project or supervision changes.",
+            "The aim is not to remove all uncertainty; it is to give the student and supervisors a clear way to respond when uncertainty appears."
+          ],
+          "bullets": [
+            "What is in scope and explicitly out of scope?",
+            "Which data may be handled, and how is it retained?",
+            "Who can pause or change the work safely?"
+          ]
+        }
+      ],
+      "next_action": {
+        "label": "Explore the schools route",
+        "href": "/help/#schools"
+      },
+      "source_context": [
+        {
+          "label": "Schools overview",
+          "href": "/help/#schools"
+        },
+        {
+          "label": "Safety guidance",
+          "href": "/safety/"
+        },
+        {
+          "label": "Terms and expectations",
+          "href": "/terms/"
+        }
+      ],
+      "related": [
+        {
+          "label": "Make internship readiness explicit",
+          "href": "/resources/schools/internship-readiness/"
+        },
+        {
+          "label": "Build a school–employer collaboration",
+          "href": "/resources/schools/school-employer-collaboration/"
+        }
+      ]
+    }
+  ]
+}
