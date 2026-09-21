@@ -8,6 +8,6 @@
 - [x] Review generated diff and remove accidental files
 - [x] Run targeted and full validation
 - [x] Refresh GitHub issue status/PR state
-- [ ] Commit, push branch, and open one reviewable PR
+- [x] Commit, push branch, and open one reviewable PR
 - [ ] Report completed work and explicit blockers in the Slack thread
 - [ ] Log workspace-level outcome
