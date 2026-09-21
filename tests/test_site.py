@@ -10,7 +10,6 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import re
-import re
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -39,7 +38,23 @@ CORE_ROUTES = [
     "/newsroom/p/loek-ota-chief-operating-officer/",
     "/newsroom/p/new-chief-creative-officer/",
     "/newsroom/p/divdworks-is-now-live/",
+    "/resources/",
+    "/resources/students/",
+    "/resources/employers/",
+    "/resources/schools/",
+    "/students/opportunities/internships/",
+    "/students/opportunities/graduation-projects/",
+    "/students/opportunities/real-world-projects/",
+    "/students/opportunities/early-career/",
 ]
+
+
+def resource_paths(source):
+    return [
+        "/resources/",
+        *[f"/resources/{audience.lower()}/" for audience in ("Students", "Employers", "Schools")],
+        *[f"/resources/{item['slug']}/" for item in source["resources"]],
+    ]
 
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
@@ -141,6 +156,11 @@ class SiteChecks(unittest.TestCase):
         for job in active_jobs:
             self.assertIn(f"https://divd.works/jobs/{job['slug']}/", sitemap)
 
+        for slug in ("internships", "graduation-projects", "real-world-projects", "early-career"):
+            pathway = ROOT / "students" / "opportunities" / slug / "index.html"
+            self.assertTrue(pathway.is_file())
+            self.assertIn('"@type":"BreadcrumbList"', pathway.read_text(encoding="utf-8"))
+
     def test_jobs_index_has_server_rendered_links_and_no_placeholder_apply_urls(self):
         index = (ROOT / "jobs" / "index.html").read_text(encoding="utf-8")
         self.assertNotIn("Loading vacancies", index)
@@ -220,6 +240,30 @@ class SiteChecks(unittest.TestCase):
         self.assertNotIn("skillFilter", script)
         self.assertIn("skillToggle", script)
         self.assertIn("addEventListener('change', render)", script)
+
+    def test_generated_resource_pages_are_source_backed_and_crawlable(self):
+        source = json.loads((ROOT / "data" / "resources.json").read_text(encoding="utf-8"))
+        result = subprocess.run(
+            ["python", "scripts/build_resources.py", "--check"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(len(source["resources"]), 9)
+        for resource in source["resources"]:
+            path = ROOT / "resources" / resource["slug"] / "index.html"
+            self.assertTrue(path.is_file())
+            html = path.read_text(encoding="utf-8")
+            self.assertIn(resource["title"], html)
+            self.assertIn('name="description"', html)
+            self.assertIn('property="og:url"', html)
+            self.assertIn('"@type":"BreadcrumbList"', html)
+            self.assertIn(resource["next_action"]["href"], html)
+        sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        for resource in resource_paths(source):
+            self.assertIn(f"https://divd.works{resource}", sitemap)
 
     def test_shared_navigation_handler_is_loaded_once_per_page(self):
         pages = [
