@@ -389,7 +389,7 @@ def landing_page(
     title = f"{label} opportunities | DIVD.Works Jobs"
     description = f"{intro} See the current public opportunity inventory from DIVD.Works."
     cards = "\n".join(job_card_link(job) for job in jobs)
-    crumbs = [("Jobs", "/jobs/"), (parent_label, "/jobs/"), (label, landing_path)]
+    crumbs = [("Jobs", "/jobs/"), (label, landing_path)]
     schema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
