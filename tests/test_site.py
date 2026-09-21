@@ -203,13 +203,20 @@ class SiteChecks(unittest.TestCase):
 
         ids = [row["id"] for row in rows]
         self.assertEqual(len(ids), len(set(ids)))
-        self.assertNotIn("vacant", [row["name"].strip().lower() for row in rows])
+        for row in rows:
+            rendered_label = " ".join(
+                [row["name"], row["lastName"], row["position"]]
+            ).lower()
+            self.assertNotIn("vacant", rendered_label)
 
     def test_company_information_contact_channels_are_current(self):
         html = (ROOT / "company-information" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('mailto:hello@divd.works', html)
-        self.assertIn('mailto:privacy@divd.works', html)
-        self.assertIn('mailto:safety@divd.works', html)
+        contact_block = re.search(r"<h2>Contact</h2>(.*?)</section>", html, flags=re.DOTALL)
+        self.assertIsNotNone(contact_block)
+        block = contact_block.group(1)
+        self.assertIn('mailto:hello@divd.works', block)
+        self.assertIn('mailto:privacy@divd.works', block)
+        self.assertIn('mailto:safety@divd.works', block)
 
     def test_newsroom_build_is_deterministic_and_source_backed(self):
         source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
