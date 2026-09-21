@@ -5,6 +5,6 @@
 - [x] Add safe follow-up implementation needed for remaining issue acceptance
 - [x] Verify no stale program anchors remain
 - [x] Add direct links from each student pathway to its canonical route and tier comparison
-- [ ] Validate and open a follow-up PR if code changes are warranted
+- [x] Validate and open follow-up PR #158
 - [ ] Close only issues whose acceptance criteria are verified
 - [ ] Report post-merge state in the original Slack thread
