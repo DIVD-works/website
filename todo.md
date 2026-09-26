@@ -1,13 +1,10 @@
-# P2 website issues — 2026-09-21
+# P2 follow-up — 2026-09-21
 
-- [x] Read Victor's request and send acknowledgement in #website
-- [x] Refresh the live P2 issue list from GitHub
-- [x] Inspect repository conventions and current implementation
-- [x] Separate code-fixable P2 issues from owner/content decisions
-- [x] Implement all verified code-fixable P2 issues in a worktree
-- [x] Review generated diff and remove accidental files
-- [x] Run targeted and full validation
-- [x] Refresh GitHub issue status/PR state
-- [x] Commit, push branch, and open one reviewable PR
-- [ ] Report completed work and explicit blockers in the Slack thread
-- [ ] Log workspace-level outcome
+- [x] Refresh post-merge P2 state and acceptance criteria
+- [x] Separate implementation-complete issues from owner-input issues
+- [x] Add safe follow-up implementation needed for remaining issue acceptance
+- [x] Verify no stale program anchors remain
+- [x] Add direct links from each student pathway to its canonical route and tier comparison
+- [x] Validate and open follow-up PR #158
+- [x] Close only issues whose acceptance criteria are verified (none beyond the 8 auto-closed by PR #156)
+- [x] Report post-merge state in the original Slack thread

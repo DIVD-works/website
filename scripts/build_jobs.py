@@ -67,6 +67,7 @@ STUDENT_PATHWAYS = {
         "title": "Internships for students",
         "intro": "A practical route into real IT work while you are still studying.",
         "context": "Compare the current internship listings with your programme requirements, timing, location, language, and supervision needs.",
+        "pathway_note": "Check the live listing for its own requirements, then compare the Talent Program tiers if you want broader coaching context.",
         "matches": lambda job: job["type"] == "Internship",
         "fallback": "/jobs/",
         "fallback_label": "Browse all opportunities",
@@ -76,6 +77,7 @@ STUDENT_PATHWAYS = {
         "title": "Graduation projects and thesis work",
         "intro": "A route for students looking for a defined graduation or thesis project in the public opportunity inventory.",
         "context": "A public thesis listing is a starting point, not a substitute for confirming your school’s assessment, supervision, and approval requirements.",
+        "pathway_note": "Confirm the project and supervision fit with your school before proceeding; the Talent Program comparison is a separate orientation route.",
         "matches": lambda job: job["type"] == "Thesis",
         "fallback": "/jobs/",
         "fallback_label": "Browse all opportunities",
@@ -85,6 +87,7 @@ STUDENT_PATHWAYS = {
         "title": "Real-world IT projects",
         "intro": "Explore practical project work and published examples that connect learning with real organisational needs.",
         "context": "The public jobs inventory does not currently label a dedicated project opening. Explore the project portfolio and browse the live opportunities for the current offer.",
+        "pathway_note": "Project scope and access are agreed per project. Compare the Talent Program tiers for the broader support model.",
         "matches": lambda job: False,
         "fallback": "/projects/",
         "fallback_label": "Explore published projects",
@@ -94,6 +97,7 @@ STUDENT_PATHWAYS = {
         "title": "Early-career opportunities",
         "intro": "For graduates and early-career professionals ready to take a next step into practical IT work.",
         "context": "Read each live listing for its own requirements and working arrangement; this page does not promise eligibility or employment.",
+        "pathway_note": "Use the live listing as the source of truth for fit, then compare the Talent Program tiers as a separate next step.",
         "matches": lambda job: job["type"] in {"Part-time", "Internship", "Thesis"},
         "fallback": "/jobs/",
         "fallback_label": "Browse all opportunities",
@@ -474,22 +478,28 @@ def student_pathways_page() -> str:
     }
     pathways = [
         (
-            "Internship",
+            "internships",
+            "Internships",
             "A practical starting point for students looking for a first placement or a way to build experience.",
-            "Start with the active opportunities and check each listing for its own requirements and application route.",
-            "/jobs/",
+            "Check each live listing for its own requirements and application route.",
         ),
         (
-            "Entry-level opportunity",
-            "For students and early-career professionals ready to explore a first role beyond an internship.",
-            "Review the role details, location, skills, and availability before deciding whether the opportunity fits.",
-            "/jobs/",
+            "graduation-projects",
+            "Graduation projects",
+            "A route for students looking for a defined graduation or thesis project.",
+            "Confirm the school’s assessment, supervision, and approval requirements.",
         ),
         (
-            "Explore by skill",
-            "Use the skills listed in current opportunities to find a route that matches what you are learning.",
-            "Skill hubs appear only when there is enough current inventory to make the comparison useful.",
-            "/jobs/",
+            "real-world-projects",
+            "Real-world projects",
+            "Explore project work and published examples that connect learning with real organisational needs.",
+            "Project scope, access, and review are agreed for the specific project.",
+        ),
+        (
+            "early-career",
+            "Early-career opportunities",
+            "For graduates and early-career professionals ready to explore a next step into practical IT work.",
+            "Read each live listing for its own requirements and working arrangement.",
         ),
     ]
     cards = "\n".join(
@@ -498,9 +508,9 @@ def student_pathways_page() -> str:
               <h2>{esc(name)}</h2>
               <p>{esc(summary)}</p>
               <p class="pathway-card__note">{esc(note)}</p>
-              <a class="text-link" href="{href}">Browse current opportunities <span aria-hidden="true">→</span></a>
+              <a class="text-link" href="/students/opportunities/{slug}/">Explore this pathway <span aria-hidden="true">→</span></a>
             </article>"""
-        for index, (name, summary, note, href) in enumerate(pathways, start=1)
+        for index, (slug, name, summary, note) in enumerate(pathways, start=1)
     )
     return f"""<!doctype html>
 <html lang="en">
@@ -626,7 +636,7 @@ def student_pathway_page(slug: str, jobs: list[dict[str, Any]]) -> str:
 {cards}
           </div>
 {empty}
-          <p class="job-landing-footnote">Need a wider view? <a href="/students/opportunities/">Return to all student pathways</a> or <a href="/resources/students/">read student guidance</a>.</p>
+          <p class="job-landing-footnote">{esc(pathway["pathway_note"])} <a href="/programs/">Compare Talent Program tiers</a>. Need a wider view? <a href="/students/opportunities/">Return to all student pathways</a> or <a href="/resources/students/">read student guidance</a>.</p>
         </div>
       </section>
     </main>
