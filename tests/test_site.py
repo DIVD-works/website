@@ -10,6 +10,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import re
+import csv
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -195,6 +196,27 @@ class SiteChecks(unittest.TestCase):
                     parsed = urllib.parse.urlparse(href)
                     if parsed.netloc in {"divd.works", "www.divd.works", "my.divd.works"}:
                         self.assertEqual(parsed.netloc, "divd.works")
+
+    def test_org_chart_has_no_vacant_positions_or_duplicate_ids(self):
+        with (ROOT / "data" / "org-chart.csv").open(encoding="utf-8", newline="") as stream:
+            rows = list(csv.DictReader(stream))
+
+        ids = [row["id"] for row in rows]
+        self.assertEqual(len(ids), len(set(ids)))
+        for row in rows:
+            rendered_label = " ".join(
+                [row["name"], row["lastName"], row["position"]]
+            ).lower()
+            self.assertNotIn("vacant", rendered_label)
+
+    def test_company_information_contact_channels_are_current(self):
+        html = (ROOT / "company-information" / "index.html").read_text(encoding="utf-8")
+        contact_block = re.search(r"<h2>Contact</h2>(.*?)</section>", html, flags=re.DOTALL)
+        self.assertIsNotNone(contact_block)
+        block = contact_block.group(1)
+        self.assertIn('mailto:hello@divd.works', block)
+        self.assertIn('mailto:privacy@divd.works', block)
+        self.assertIn('mailto:safety@divd.works', block)
 
     def test_newsroom_build_is_deterministic_and_source_backed(self):
         source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
