@@ -28,6 +28,7 @@ CORE_ROUTES = [
     "/jobs/",
     "/join/",
     "/nl/",
+    "/nl/programs/",
     "/privacy/policy/",
     "/programs/",
     "/projects/",
@@ -334,6 +335,38 @@ class SiteChecks(unittest.TestCase):
         self.assertIn("businesses", html.lower())
         self.assertIn("schools", html.lower())
         self.assertIn('href="/jobs/">Find an opportunity', html)
+
+    def test_program_memberships_are_bilingual_and_indexed(self):
+        english = (ROOT / "programs" / "index.html").read_text(encoding="utf-8")
+        dutch = (ROOT / "nl" / "programs" / "index.html").read_text(encoding="utf-8")
+        dutch_home = (ROOT / "nl" / "index.html").read_text(encoding="utf-8")
+
+        for html, locale_url, alternate_url in (
+            (english, "https://divd.works/programs/", "https://divd.works/nl/programs/"),
+            (dutch, "https://divd.works/nl/programs/", "https://divd.works/programs/"),
+        ):
+            with self.subTest(locale_url=locale_url):
+                self.assertIn(f'<link rel="canonical" href="{locale_url}"', html)
+                self.assertIn(f'hreflang="nl"', html)
+                self.assertIn(f'hreflang="en"', html)
+                self.assertIn(alternate_url, html)
+                self.assertIn("€5", html)
+                self.assertIn("€10", html)
+                self.assertIn("€49", html)
+                self.assertIn("€99", html)
+                self.assertIn("€89", html)
+                self.assertIn("€399", html)
+
+        self.assertIn("basic coaching", english)
+        self.assertIn("basiscoaching", dutch)
+        self.assertIn("no limit", english.lower())
+        self.assertIn("onbeperkt", dutch.lower())
+        self.assertIn("Session cancellations", english)
+        self.assertIn("Annuleringen van coachingsessies", dutch)
+        self.assertIn('href="/nl/programs/"', dutch_home)
+
+        sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertIn("https://divd.works/nl/programs/", sitemap)
 
     def test_internal_html_links_resolve(self):
         html_files = ROOT.rglob("*.html")
