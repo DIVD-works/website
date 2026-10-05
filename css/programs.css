@@ -205,6 +205,10 @@ button { font: inherit; }
 }
 
 .text-link:hover { color: var(--yellow); }
+.language-switch {
+  padding-left: 16px;
+  border-left: 1px solid var(--line-strong);
+}
 
 .tier-overview {
   padding: 96px 0 110px;
@@ -340,6 +344,18 @@ button { font: inherit; }
   font-size: 11px;
   font-weight: 700;
 }
+
+.tier-card__note {
+  margin: 16px 0 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.tier-card__note strong { color: var(--text); }
 
 .tier-card__link {
   margin-top: auto;
@@ -682,6 +698,26 @@ button { font: inherit; }
 .closing {
   padding-top: 94px;
   background: #080808;
+}
+
+.session-policy {
+  padding: 42px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-soft);
+}
+
+.session-policy h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -.02em;
+}
+
+.session-policy p {
+  max-width: 820px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .closing-inner {
