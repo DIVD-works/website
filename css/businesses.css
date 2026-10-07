@@ -326,6 +326,25 @@ button { font: inherit; }
   margin-top: 30px;
 }
 
+.closing-note {
+  max-width: 680px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.closing-note a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+.closing-note a:hover,
+.closing-note a:focus-visible {
+  color: var(--yellow);
+}
+
 .secondary-link {
   width: fit-content;
   margin: 19px auto 0;
