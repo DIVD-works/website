@@ -219,6 +219,18 @@ class SiteChecks(unittest.TestCase):
         self.assertIn('mailto:privacy@divd.works', block)
         self.assertIn('mailto:safety@divd.works', block)
 
+    def test_business_project_ctas_open_jotform_with_context(self):
+        html = (ROOT / "businesses" / "index.html").read_text(encoding="utf-8")
+        form_url = "https://form.jotform.com/262784732121052"
+        self.assertEqual(html.count(f'href="{form_url}"'), 2)
+        self.assertNotIn(
+            'mailto:hello@divd.works?subject=Submit%20a%20project%20to%20DIVD.Works',
+            html,
+        )
+        self.assertIn("Our project form is hosted on Jotform", html)
+        self.assertIn("Please do not include passwords, credentials", html)
+        self.assertIn('href="/privacy/policy/"', html)
+
     def test_newsroom_build_is_deterministic_and_source_backed(self):
         source = json.loads((ROOT / "data" / "newsroom.json").read_text(encoding="utf-8"))
         result = subprocess.run(
