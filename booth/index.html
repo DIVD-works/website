@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="nl" class="h-full bg-[#080808] text-[#f7f7f5] antialiased select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIVD.works - Business Presentation Booth Display</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Typography: Inter, matching DIVD.Works -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        divd: {
+                            bg: '#080808',        /* Live DIVD.Works background */
+                            card: '#090909',      /* Live DIVD.Works section surface */
+                            cardHover: '#151515',
+                            border: '#303030',    /* Live DIVD.Works card border */
+                            cyan: '#ffd326',      /* DIVD.Works brand yellow */
+                            cyanDark: '#2a250d',
+                            emerald: '#ffd326',
+                            amber: '#ffd326'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Solid Corporate Card Styling */
+        .corporate-card {
+            background-color: #090909;
+            border: 1px solid #303030;
+        }
+
+        /* Clean Slide Transitions */
+        .slide {
+            opacity: 0;
+            transform: translateX(12px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+            position: relative;
+        }
+
+        /* Progress Bar Animation */
+        #progressBar {
+            transition: width 0.1s linear;
+        }
+
+        /* Live DIVD.Works uses restrained solid dark surfaces instead of a grid. */
+        .corp-grid {
+            background: #080808;
+        }
+
+        .corporate-card {
+            border-radius: 13px;
+            box-shadow: none;
+        }
+
+        .brand-lockup {
+            position: relative;
+            width: fit-content;
+            color: #ffd326;
+            font-weight: 800;
+        }
+
+        .brand-bubble {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 72px;
+            height: 34px;
+            padding: 0 10px;
+            border: 2px solid #ffd326;
+            border-radius: 999px;
+            font-size: 18px;
+            line-height: 1;
+            letter-spacing: .04em;
+        }
+
+        .brand-tag {
+            position: absolute;
+            right: -15px;
+            top: -11px;
+            padding: 4px 8px;
+            background: #ffd326;
+            color: #0b0b0b;
+            border-radius: 10px 10px 10px 0;
+            font-size: 7px;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        header {
+            background: rgba(8, 8, 8, .94) !important;
+            border-color: #202020 !important;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        button, input, select {
+            transition: border-color .2s ease, background-color .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        button:hover {
+            border-color: #474747;
+        }
+
+        #settingsModal > div {
+            background: #151515;
+        }
+    </style>
+</head>
+
+<body class="h-screen w-screen overflow-hidden bg-divd-bg font-sans corp-grid flex flex-col justify-between text-[#f7f7f5]">
+
+    <header class="h-16 px-6 lg:px-8 bg-divd-card border-b border-divd-border flex items-center justify-between z-30 shrink-0">
+        <!-- Brand Logo & Badge -->
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-7">
+                <div class="brand-lockup" aria-label="DIVD.Works">
+                    <span class="brand-bubble">DIVD</span>
+                    <span class="brand-tag">WORKS</span>
+                </div>
+                <span class="text-[11px] font-bold bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30 px-3 py-1 rounded-full uppercase tracking-[0.08em]">
+                    FOR BUSINESSES
+                </span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-2 pl-4 border-l border-divd-border">
+                <span class="h-2 w-2 rounded-full bg-divd-cyan"></span>
+                <span class="text-xs font-mono text-divd-cyan font-semibold uppercase tracking-wider">PROJECT CAPACITY AVAILABLE</span>
+            </div>
+        </div>
+
+        <!-- Hotkey Info -->
+        <div class="hidden xl:flex items-center gap-3 text-xs font-mono text-[#a7a7a7]">
+            <span class="bg-[#151515] px-2.5 py-1 rounded border border-divd-border"><kbd class="text-divd-cyan">Spatie</kbd> Pauze</span>
+            <span class="bg-[#151515] px-2.5 py-1 rounded border border-divd-border"><kbd class="text-divd-cyan">&larr;</kbd> <kbd class="text-divd-cyan">&rarr;</kbd> Volgende/Vorige</span>
+            <span class="bg-[#151515] px-2.5 py-1 rounded border border-divd-border"><kbd class="text-divd-cyan">F</kbd> Volledig Scherm</span>
+        </div>
+
+        <!-- Action Control Buttons -->
+        <div class="flex items-center gap-2">
+            <button id="playPauseBtn" onclick="togglePlayPause()" class="p-2.5 rounded-full bg-[#151515] hover:bg-[#1b1b1b] text-[#e8e8e8] hover:text-divd-cyan transition border border-divd-border" title="Pauzeer / Hervat (P)">
+                <i id="playPauseIcon" class="fa-solid fa-pause text-sm"></i>
+            </button>
+
+            <button onclick="toggleFullscreen()" class="p-2.5 rounded-full bg-[#151515] hover:bg-[#1b1b1b] text-[#e8e8e8] hover:text-divd-cyan transition border border-divd-border" title="Volledig Scherm (F)">
+                <i class="fa-solid fa-expand text-sm"></i>
+            </button>
+
+            <button onclick="openSettingsModal()" class="p-2.5 rounded-full bg-[#151515] hover:bg-[#1b1b1b] text-[#e8e8e8] hover:text-divd-cyan transition border border-divd-border" title="Instellingen & QR Code">
+                <i class="fa-solid fa-gear text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 grid grid-cols-12 gap-6 p-6 overflow-hidden relative z-10">
+
+        <!-- LEFT PANEL: Auto-rotating Corporate Slideshow (65% width) -->
+        <section class="col-span-12 lg:col-span-8 flex flex-col justify-between corporate-card rounded-[13px] p-8 relative overflow-hidden border border-[#242424]">
+            
+            <!-- Solid Progress Bar at Top -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-[#151515] z-20">
+                <div id="progressBar" class="h-full bg-divd-cyan w-0"></div>
+            </div>
+
+            <div class="slide active">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.05em] bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30">
+                        <i class="fa-solid fa-layer-group"></i> SLIDE 01 // UITDAGING & OPLOSSING
+                    </div>
+                    <h1 class="text-4xl xl:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                        Projecten op de plank? <br><span class="text-divd-cyan">Wij regelen de mankracht.</span>
+                    </h1>
+                    <p class="text-lg xl:text-xl text-[#e8e8e8] font-normal max-w-2xl leading-relaxed">
+                        Efficiënt IT- en securityprojecten afronden zonder trage, kostbare en risicovolle sollicitatieprocedures.
+                    </p>
+                </div>
+
+                <!-- 3 Corporate Fact Boxes -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto pt-4">
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border">
+                        <div class="text-2xl mb-2 text-divd-cyan"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <h3 class="font-bold text-white text-base">Geen Wachttijd</h3>
+                        <p class="text-xs text-[#a7a7a7] mt-1 leading-normal">Geen maandenlange wervings- en selectietrajecten meer.</p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border">
+                        <div class="text-2xl mb-2 text-divd-cyan"><i class="fa-solid fa-calculator"></i></div>
+                        <h3 class="font-bold text-white text-base">Kostenbeheersing</h3>
+                        <p class="text-xs text-[#a7a7a7] mt-1 leading-normal">Geen torenhoge interim-tarieven of wervingsfee's.</p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border">
+                        <div class="text-2xl mb-2 text-divd-cyan"><i class="fa-solid fa-list-check"></i></div>
+                        <h3 class="font-bold text-white text-base">Direct Resultaat</h3>
+                        <p class="text-xs text-[#a7a7a7] mt-1 leading-normal">Dien je opdracht in en start deze maand nog met bouwen.</p>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-[13px] bg-[#151515] border border-divd-border flex items-center gap-3 text-xs text-[#e8e8e8] font-mono">
+                    <i class="fa-solid fa-circle-info text-divd-cyan text-base shrink-0"></i>
+                    <span>DIVD.Works koppelt gemotiveerd talent aan concrete opdrachten van bedrijven.</span>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.05em] bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30">
+                        <i class="fa-solid fa-users-gear"></i> SLIDE 02 // DIRECTE CAPACITEIT
+                    </div>
+                    <h2 class="text-3xl xl:text-4xl font-extrabold text-white tracking-tight">
+                        Geen trage werving. <br><span class="text-divd-cyan">Direct gemotiveerd talent aan het werk.</span>
+                    </h2>
+                    <p class="text-[#e8e8e8] text-base font-normal max-w-2xl">
+                        Dien je opdracht in bij DIVD.Works. Ons team van getalenteerde en gedreven IT-studenten gaat meteen voor je aan de slag.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-bolt"></i></div>
+                        <h4 class="font-bold text-white text-base">Snel Inzetbaar</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">
+                            Binnen enkele dagen een match voor jouw specifieke IT- of cybersecurityvraagstuk.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h4 class="font-bold text-white text-base">Top IT-Talent</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">
+                            Aangevuld met frisse kennis van de nieuwste technologieën, frameworks en securitystandaarden.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-[13px] bg-[#151515] border border-divd-border text-xs text-[#e8e8e8] font-mono">
+                    <i class="fa-solid fa-shield-halved text-divd-cyan mr-2"></i> Inclusief begeleiding & mentorschap door ervaren DIVD-specialisten.
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.05em] bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30">
+                        <i class="fa-solid fa-code-branch"></i> SLIDE 03 // PROJECT PORTFOLIO
+                    </div>
+                    <h2 class="text-3xl xl:text-4xl font-extrabold text-white tracking-tight">
+                        Van Pentest tot <span class="text-divd-cyan">App Development.</span>
+                    </h2>
+                    <p class="text-[#e8e8e8] text-base font-normal max-w-2xl">
+                        Onze teams worden flexibel ingezet op diverse IT- en cybersecurityprojecten binnen jouw organisatie.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-auto">
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-bug-slash"></i></div>
+                        <h4 class="font-bold text-white text-base">Pentesting & Security Audits</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">Kwetsbaarheidsscans, netwerkaudits en penetratietesten.</p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h4 class="font-bold text-white text-base">Software & App Development</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">Webapplicaties, APIs, maatwerk tools en automatiseringen.</p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-diagram-project"></i></div>
+                        <h4 class="font-bold text-white text-base">IT Operations & Research</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">Infrastructuur, cloud-migraties en technisch onderzoek.</p>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-[13px] bg-[#151515] border border-divd-border text-xs text-[#e8e8e8] font-mono">
+                    <i class="fa-solid fa-eye text-divd-cyan mr-2"></i> Jij als opdrachtgever krijgt gedurende het gehele proces 100% toezicht.
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.05em] bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30">
+                        <i class="fa-solid fa-user-check"></i> SLIDE 04 // SLIMME RECRUITMENT
+                    </div>
+                    <h2 class="text-3xl xl:text-4xl font-extrabold text-white tracking-tight">
+                        Zie talent in actie <span class="text-divd-cyan">vóór je ze aanneemt.</span>
+                    </h2>
+                    <p class="text-[#e8e8e8] text-base font-normal max-w-2xl">
+                        Evalueer vaardigheden, werkethiek en samenwerking op de werkvloer. Zo vind en koppel je bewezen toptalent aan je bedrijf.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-sliders"></i></div>
+                        <h4 class="font-bold text-white text-base">Volledig Toezicht</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">
+                            Volg de voortgang en zie precies wie uitblinkt tijdens de feitelijke uitvoering van je opdracht.
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-[13px] bg-[#151515] border border-divd-border space-y-2">
+                        <div class="text-xl text-divd-cyan"><i class="fa-solid fa-handshake"></i></div>
+                        <h4 class="font-bold text-white text-base">Moeiteloze Instroom</h4>
+                        <p class="text-xs text-[#a7a7a7] leading-relaxed">
+                            Bevalt de samenwerking? Neem bewezen talent na het project direct aan voor vaste functies.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-[13px] bg-[#151515] border border-divd-border text-xs text-[#e8e8e8] font-mono">
+                    <i class="fa-solid fa-arrow-right text-divd-cyan mr-2"></i> Scan de QR-code op het scherm en dien vrijblijvend je opdracht in.
+                </div>
+            </div>
+
+            <!-- Slide Control Bar -->
+            <div class="flex items-center justify-between pt-4 border-t border-divd-border shrink-0">
+                <!-- Dots Indicator -->
+                <div class="flex items-center gap-2" id="dotsContainer"></div>
+
+                <!-- Manual Navigation Buttons -->
+                <div class="flex items-center gap-3">
+                    <button onclick="prevSlide()" class="w-9 h-9 rounded-full bg-[#151515] hover:bg-[#1b1b1b] text-[#e8e8e8] hover:text-white border border-divd-border flex items-center justify-center transition">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <span id="slideCounter" class="text-xs font-mono font-bold text-[#a7a7a7] px-2">1 / 4</span>
+                    <button onclick="nextSlide()" class="w-9 h-9 rounded-full bg-[#151515] hover:bg-[#1b1b1b] text-[#e8e8e8] hover:text-white border border-divd-border flex items-center justify-center transition">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <aside class="col-span-12 lg:col-span-4 corporate-card rounded-[13px] p-6 flex flex-col justify-between border border-[#242424]">
+            
+            <!-- Panel Header -->
+            <div class="text-center space-y-1.5 border-b border-divd-border pb-4">
+                <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.05em] bg-divd-cyanDark text-divd-cyan border border-divd-cyan/30">
+                    SCAN & VRAAG MANKRACHT AAN
+                </span>
+                <h3 class="text-2xl font-black text-white tracking-tight pt-1">Dien Je Opdracht In</h3>
+                <p class="text-xs text-[#a7a7a7]">Vul het formulier in 30 seconden in</p>
+            </div>
+
+            <!-- High Contrast Solid QR Box -->
+            <div class="my-auto py-4 flex flex-col items-center justify-center">
+                <div class="p-4 rounded-[13px] bg-white border-2 border-divd-cyan shadow-md">
+                    <!-- Dynamic QR Code Image -->
+                    <img id="qrCodeImg" 
+                         src="https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=https://divd.works/businesses/" 
+                         alt="Scan QR Code DIVD.works" 
+                         class="w-48 h-48 md:w-52 md:h-52 object-contain">
+                </div>
+
+                <!-- URL Indicator Box -->
+                <div class="mt-4 px-3 py-1.5 rounded bg-[#151515] border border-divd-border text-center max-w-full">
+                    <p class="text-[10px] font-mono uppercase text-[#a7a7a7]">Of ga direct naar:</p>
+                    <p id="qrUrlDisplay" class="text-xs font-mono font-bold text-divd-cyan truncate max-w-[220px]">
+                        divd.works/businesses/
+                    </p>
+                </div>
+            </div>
+
+            <!-- Corporate Guarantee Bullets -->
+            <div class="space-y-2 pt-3 border-t border-divd-border text-xs text-[#e8e8e8]">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-check text-divd-cyan"></i>
+                    <span>Directe intake voor IT-projecten</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-check text-divd-cyan"></i>
+                    <span>100% toezicht tijdens de uitvoering</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-check text-divd-cyan"></i>
+                    <span>Geen recruitment- en overnamekosten</span>
+                </div>
+            </div>
+
+        </aside>
+    </main>
+
+    <div id="settingsModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-200">
+        <div class="corporate-card rounded-[13px] p-6 max-w-md w-full mx-4 border border-divd-border space-y-5">
+            
+            <div class="flex items-center justify-between border-b border-divd-border pb-3">
+                <h3 class="font-bold text-white text-base flex items-center gap-2">
+                    <i class="fa-solid fa-gear text-divd-cyan"></i> Display & QR Instellingen
+                </h3>
+                <button onclick="closeSettingsModal()" class="text-[#a7a7a7] hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <!-- QR Code Target Link -->
+                <div>
+                    <label class="block text-xs font-mono uppercase text-[#e8e8e8] mb-1">QR Code Doel-URL</label>
+                    <input type="url" id="qrUrlInput" value="https://divd.works/businesses/" 
+                           class="w-full bg-[#151515] border border-divd-border rounded px-3 py-2 text-sm text-white font-mono focus:border-divd-cyan focus:outline-none focus:ring-2 focus:ring-divd-cyan/10"
+                           placeholder="https://divd.works/businesses/">
+                </div>
+
+                <!-- Slide Speed -->
+                <div>
+                    <label class="block text-xs font-mono uppercase text-[#e8e8e8] mb-1">Slide Duur (Seconden)</label>
+                    <select id="slideIntervalInput" class="w-full bg-[#151515] border border-divd-border rounded px-3 py-2 text-sm text-white font-mono focus:border-divd-cyan focus:outline-none focus:ring-2 focus:ring-divd-cyan/10">
+                        <option value="5">5 Seconden (Snel)</option>
+                        <option value="8" selected>8 Seconden (Standaard)</option>
+                        <option value="12">12 Seconden (Rustig)</option>
+                        <option value="15">15 Seconden (Langzaam)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-3 border-t border-divd-border">
+                <button onclick="closeSettingsModal()" class="px-5 py-2 rounded-full bg-[#1b1b1b] text-[#e8e8e8] hover:bg-[#242424] text-xs font-semibold">
+                    Annuleren
+                </button>
+                <button onclick="saveSettings()" class="px-5 py-2 rounded-full bg-divd-cyan text-[#111111] font-bold hover:bg-[#ffe25e] text-xs uppercase tracking-wider">
+                    Opslaan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        let slideDuration = 8000;
+        let isPaused = false;
+        let progressInterval = null;
+        let progressMs = 0;
+
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progressBar');
+        const slideCounter = document.getElementById('slideCounter');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+
+        function initSlideshow() {
+            createDots();
+            showSlide(0);
+            startAutoLoop();
+
+            /* Keyboard Controls */
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+                
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === ' ' || e.key.toLowerCase() === 'p') {
+                    e.preventDefault();
+                    togglePlayPause();
+                }
+                if (e.key.toLowerCase() === 'f') toggleFullscreen();
+            });
+        }
+
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `h-2 rounded transition-all duration-200 ${idx === 0 ? 'bg-divd-cyan w-6' : 'bg-[#303030] hover:bg-[#777777] w-2'}`;
+                dot.onclick = () => goToSlide(idx);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('button');
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlideIndex) {
+                    dot.className = 'h-2 rounded bg-divd-cyan w-6 transition-all duration-200';
+                } else {
+                    dot.className = 'h-2 rounded bg-[#303030] hover:bg-[#777777] w-2 transition-all duration-200';
+                }
+            });
+        }
+
+        function showSlide(index) {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === index);
+            });
+            currentSlideIndex = index;
+            slideCounter.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+            updateDots();
+            resetProgress();
+        }
+
+        function nextSlide() {
+            const nextIdx = (currentSlideIndex + 1) % slides.length;
+            showSlide(nextIdx);
+        }
+
+        function prevSlide() {
+            const prevIdx = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(prevIdx);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+        }
+
+        function startAutoLoop() {
+            clearInterval(progressInterval);
+            progressMs = 0;
+            const updateFreq = 40;
+
+            progressInterval = setInterval(() => {
+                if (!isPaused) {
+                    progressMs += updateFreq;
+                    const percent = (progressMs / slideDuration) * 100;
+                    progressBar.style.width = `${Math.min(percent, 100)}%`;
+
+                    if (progressMs >= slideDuration) {
+                        nextSlide();
+                    }
+                }
+            }, updateFreq);
+        }
+
+        function resetProgress() {
+            progressMs = 0;
+            progressBar.style.width = '0%';
+        }
+
+        function togglePlayPause() {
+            isPaused = !isPaused;
+            playPauseIcon.className = isPaused ? 'fa-solid fa-play text-sm' : 'fa-solid fa-pause text-sm';
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch((err) => console.log(err));
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        function openSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            isPaused = true;
+            playPauseIcon.className = 'fa-solid fa-play text-sm';
+        }
+
+        function closeSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 200);
+            isPaused = false;
+            playPauseIcon.className = 'fa-solid fa-pause text-sm';
+        }
+
+        function saveSettings() {
+            const newUrl = document.getElementById('qrUrlInput').value.trim();
+            const newDuration = parseInt(document.getElementById('slideIntervalInput').value, 10);
+
+            if (newUrl) {
+                document.getElementById('qrCodeImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(newUrl)}`;
+                document.getElementById('qrUrlDisplay').textContent = newUrl.replace(/^https?:\/\//, '');
+            }
+
+            if (newDuration) {
+                slideDuration = newDuration * 1000;
+            }
+
+            closeSettingsModal();
+            resetProgress();
+        }
+
+        window.onload = function () {
+            initSlideshow();
+        };
+    </script>
+</body>
+</html>
